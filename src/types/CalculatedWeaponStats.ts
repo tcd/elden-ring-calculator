@@ -33,17 +33,19 @@ export interface CalculatedWeaponStats {
         guardBoost: number
     }
     scaling: {
-        strength:     number
-        dexterity:    number
-        intelligence: number
-        faith:        number
-        arcane:       number
+        values: {
+            strength:     number
+            dexterity:    number
+            intelligence: number
+            faith:        number
+            arcane:       number
+        }
+        tierStrings: {
+            strength:     number
+            dexterity:    number
+            intelligence: number
+            faith:        number
+            arcane:       number
+        }
     }
-    // requirements: {
-    //     strength:     number
-    //     dexterity:    number
-    //     intelligence: number
-    //     faith:        number
-    //     arcane:       number
-    // }
 }

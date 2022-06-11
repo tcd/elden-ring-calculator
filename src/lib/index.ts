@@ -1,2 +1,1 @@
-export * from "./types"
-export * from "./google-sheets-math-functions"
+export * from "./utilities"

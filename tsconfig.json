@@ -5,6 +5,7 @@
         "downlevelIteration": true,
         "baseUrl": "./",
         "paths": {
+            "@types":[ "./src/types/index.ts" ],
         },
         "types": [
             "node",
