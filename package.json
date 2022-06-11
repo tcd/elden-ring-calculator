@@ -1,8 +1,7 @@
 {
     "name": "elden-ring-calculator",
     "version": "0.0.0",
-    "description": "",
-    "author": "Clay Dunston",
+    "author": "Clay Dunston <dunstontc@gmail.com>",
     "license": "MIT",
     "scripts": {
         "test": "mocha --require ts-node/register --require tsconfig-paths/register test/**/*.test.ts"
