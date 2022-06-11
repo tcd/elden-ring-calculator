@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "esModuleInterop": true,
+        "downlevelIteration": true,
+        "baseUrl": "./",
+        "paths": {
+        },
+        "types": [
+            "node",
+            "mocha",
+            "chai",
+        ],
+        "typeRoots": [
+            "./node_modules/@types",
+            "/src/@types",
+        ]
+    },
+}
