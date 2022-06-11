@@ -1,4 +1,4 @@
-/** Name of an Attribute. */
+/** Name of an `Attribute`. */
 export enum Attr {
     strength     = "strength",
     dexterity    = "dexterity",

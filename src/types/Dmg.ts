@@ -1,4 +1,4 @@
-/** Name of a Damage Type. */
+/** Name of a `Damage Type`. */
 export enum Dmg {
     physical  = "physical",
     magic     = "magic",
