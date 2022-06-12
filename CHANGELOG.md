@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 
 ## [Unreleased]
 
-<!-- ## [0.0.0] - 2022-06-10 -->
+
+## [0.1.0] - 2022-06-12
+
+- Initial release
 
 
 <!-- ======================================================================= -->
