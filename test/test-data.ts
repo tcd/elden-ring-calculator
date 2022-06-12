@@ -137,6 +137,7 @@ export const BlasphemousBlade: TestWeapon = {
     calculations: {
         attr_requirementsMet: buildAttrMap(true),
         dmg_requirementsMet: buildDmgMap(true),
+        dmg_attr_requirementMet: buildDmgAttrMap(true),
         dmg_scalesOn_attr: buildDmgAttrMap(false, {
             physical: {
                 strength: true,
@@ -155,8 +156,32 @@ export const BlasphemousBlade: TestWeapon = {
                 faith: true,
             },
         }),
-        dmg_attr_requirementMet: buildDmgAttrMap(true),
-        dmg_attr_calcCorrect: null,
-        dmg_attr_damage: null,
+        dmg_attr_calcCorrect: buildDmgAttrMap<Decimal>(0, {
+            physical: {
+                strength: 41.61000442,
+                dexterity: 41.61000442,
+            },
+            magic: {
+                intelligence: 41.61000442,
+            },
+            fire: {
+                faith: 53.33333333,
+            },
+            lightning: {
+                dexterity: 41.61000442,
+            },
+            holy: {
+                faith: 41.61000442,
+            },
+        }),
+        dmg_attr_damage: buildDmgAttrMap<Decimal>(0, {
+            physical: {
+                strength: 77.71230061,
+                dexterity: 77.71230061,
+            },
+            fire: {
+                faith: 91.728,
+            },
+        }),
     },
 }

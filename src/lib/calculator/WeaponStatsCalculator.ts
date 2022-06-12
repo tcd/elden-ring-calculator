@@ -1,18 +1,19 @@
 import {
-    CalculatedWeaponStats,
-    SlimWeaponStatData,
     AttackElementCorrectParam,
     Attr,
-    Dmg,
     AttrMap,
+    CalculatedWeaponStats,
+    Dmg,
     DmgAttrMap,
     DmgMap,
+    SlimWeaponStatData,
 } from "@types"
 
 import {
-    multiply,
+    buildDmgMap,
+    buildDmgAttrMap,
     calcCorrect,
-    InitialValues,
+    multiply,
 } from "@lib"
 
 export interface WeaponStatsCalculatorOptions {
@@ -54,10 +55,10 @@ export class WeaponStatsCalculator {
         this.adjustmentParams = options.adjustmentParams
         this.requirements     = options.requirements
 
-        this.stats                = InitialValues.stats()
-        this.dmg_attr_damage      = InitialValues.dmg_attr_damage()
-        this.dmg_attr_calcCorrect = InitialValues.dmg_attr_calcCorrect()
-        this.dmg_requirementsMet  = InitialValues.dmg_requirementsMet()
+        this.stats                = this._initialStats()
+        this.dmg_attr_damage      = buildDmgAttrMap(0)
+        this.dmg_attr_calcCorrect = buildDmgAttrMap(0)
+        this.dmg_requirementsMet  = buildDmgMap(false)
     }
 
     public calculate(): void {
@@ -68,6 +69,18 @@ export class WeaponStatsCalculator {
         this.set_dmg_requirementsMet()
         this.set_dmg_attr_damage()
         return null
+    }
+
+    private _initialStats(): CalculatedWeaponStats {
+        return {
+            attack: {
+                base: {},
+                scaled: {},
+                total: {},
+            },
+            defense: {},
+            scaling: {},
+        } as CalculatedWeaponStats
     }
 
     private set_dmg_attr_calcCorrect(): void {
@@ -112,21 +125,10 @@ export class WeaponStatsCalculator {
 }
 
 export const attributeRequirementsMet = (attributes: AttrMap<Integer>, requirements: AttrMap<Integer>): AttrMap<boolean> => {
-    // return Object.values(Attr).reduce((result, attr) => {
-    //     result[attr] = attributes[attr] >= requirements[attr]
-    //     return result
-    // }, {} as AttrMap<boolean>)
-    // return Object.values(Attr).reduce((result, attr) => ({
-    //     ...result,
-    //     [attr]: (attributes[attr] >= requirements[attr]),
-    // }), {} as AttrMap<boolean>)
-    return {
-        strength:     attributes.strength     >= requirements.strength,
-        dexterity:    attributes.dexterity    >= requirements.dexterity,
-        intelligence: attributes.intelligence >= requirements.intelligence,
-        faith:        attributes.faith        >= requirements.faith,
-        arcane:       attributes.arcane       >= requirements.arcane,
-    }
+    return Object.values(Attr).reduce((result, attr) => ({
+        ...result,
+        [attr]: (attributes[attr] >= requirements[attr]),
+    }), {} as AttrMap<boolean>)
 }
 
 export const damageTypeScalesOnAttribute = (adjustmentParam: AttackElementCorrectParam): DmgAttrMap<boolean> => {
@@ -177,41 +179,4 @@ export const damageTypeAttributeRequirementsMet = (attrMet: AttrMap<boolean>, sc
             [attr]: (scalesOn[dmg][attr] == true && attrMet[attr] == false) ? false : true,
         }), {} as AttrMap<boolean>),
     }), {} as DmgAttrMap<boolean>)
-    // return {
-    //     [Dmg.physical]: {
-    //         [Attr.strength]:     ((scalesOn.physical.strength     && !attrMet.strength)     ? false : true),
-    //         [Attr.dexterity]:    ((scalesOn.physical.dexterity    && !attrMet.dexterity)    ? false : true),
-    //         [Attr.intelligence]: ((scalesOn.physical.intelligence && !attrMet.intelligence) ? false : true),
-    //         [Attr.faith]:        ((scalesOn.physical.faith        && !attrMet.faith)        ? false : true),
-    //         [Attr.arcane]:       ((scalesOn.physical.arcane       && !attrMet.arcane)       ? false : true),
-    //     },
-    //     [Dmg.magic]: {
-    //         [Attr.strength]:     ((scalesOn.magic.strength     && !attrMet.strength)     ? false : true),
-    //         [Attr.dexterity]:    ((scalesOn.magic.dexterity    && !attrMet.dexterity)    ? false : true),
-    //         [Attr.intelligence]: ((scalesOn.magic.intelligence && !attrMet.intelligence) ? false : true),
-    //         [Attr.faith]:        ((scalesOn.magic.faith        && !attrMet.faith)        ? false : true),
-    //         [Attr.arcane]:       ((scalesOn.magic.arcane       && !attrMet.arcane)       ? false : true),
-    //     },
-    //     [Dmg.fire]: {
-    //         [Attr.strength]:     ((scalesOn.fire.strength     && !attrMet.strength)     ? false : true),
-    //         [Attr.dexterity]:    ((scalesOn.fire.dexterity    && !attrMet.dexterity)    ? false : true),
-    //         [Attr.intelligence]: ((scalesOn.fire.intelligence && !attrMet.intelligence) ? false : true),
-    //         [Attr.faith]:        ((scalesOn.fire.faith        && !attrMet.faith)        ? false : true),
-    //         [Attr.arcane]:       ((scalesOn.fire.arcane       && !attrMet.arcane)       ? false : true),
-    //     },
-    //     [Dmg.lightning]: {
-    //         [Attr.strength]:     ((scalesOn.lightning.strength     && !attrMet.strength)     ? false : true),
-    //         [Attr.dexterity]:    ((scalesOn.lightning.dexterity    && !attrMet.dexterity)    ? false : true),
-    //         [Attr.intelligence]: ((scalesOn.lightning.intelligence && !attrMet.intelligence) ? false : true),
-    //         [Attr.faith]:        ((scalesOn.lightning.faith        && !attrMet.faith)        ? false : true),
-    //         [Attr.arcane]:       ((scalesOn.lightning.arcane       && !attrMet.arcane)       ? false : true),
-    //     },
-    //     [Dmg.holy]: {
-    //         [Attr.strength]:     ((scalesOn.holy.strength     && !attrMet.strength)     ? false : true),
-    //         [Attr.dexterity]:    ((scalesOn.holy.dexterity    && !attrMet.dexterity)    ? false : true),
-    //         [Attr.intelligence]: ((scalesOn.holy.intelligence && !attrMet.intelligence) ? false : true),
-    //         [Attr.faith]:        ((scalesOn.holy.faith        && !attrMet.faith)        ? false : true),
-    //         [Attr.arcane]:       ((scalesOn.holy.arcane       && !attrMet.arcane)       ? false : true),
-    //     },
-    // }
 }
