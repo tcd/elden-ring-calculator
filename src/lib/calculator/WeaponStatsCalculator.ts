@@ -92,8 +92,8 @@ export class WeaponStatsCalculator {
     }
 
     private set_dmg_attr_calcCorrect(): void {
-        for (const dmg in Object.values(Dmg)) {
-            for (const attr in Object.values(Attr)) {
+        for (const dmg of Object.values(Dmg)) {
+            for (const attr of Object.values(Attr)) {
                 if (!this.dmg_scalesOn_attr[dmg][attr]) {
                     this.dmg_attr_calcCorrect[dmg][attr] = 0
                 }
@@ -111,8 +111,8 @@ export class WeaponStatsCalculator {
     }
 
     private set_dmg_attr_damage(): void {
-        for (const dmg in Object.values(Dmg)) {
-            for (const attr in Object.values(Attr)) {
+        for (const dmg of Object.values(Dmg)) {
+            for (const attr of Object.values(Attr)) {
                 const calcCorrect = this.dmg_attr_calcCorrect?.[dmg]?.[attr] ?? 0
                 if (calcCorrect > 0) {
                     const base = this.slimData.attack[dmg]
@@ -144,7 +144,7 @@ export const damageTypeAttributeRequirementsMet = (attrMet: AttrMap<boolean>, sc
         ...dmgResult,
         [dmg]: Object.values(Attr).reduce((attrResult, attr) => ({
             ...attrResult,
-            [attr]: (scalesOn[dmg][attr] == true && attrMet[attr] == false) ? false : true,
+            [attr]: !(scalesOn[dmg][attr] == true && attrMet[attr] == false),
         }), {} as AttrMap<boolean>),
     }), {} as DmgAttrMap<boolean>)
 }

@@ -8,6 +8,7 @@ import {
     attributeRequirementsMet,
     damageTypeScalesOnAttribute,
     damageTypeAttributeRequirementsMet,
+    WeaponStatsCalculator,
 } from "@lib"
 import { BlasphemousBlade } from "../helpers"
 
@@ -16,7 +17,23 @@ const {
     calculations,
 } = BlasphemousBlade
 
+const calculator = new WeaponStatsCalculator(options)
+
 describe("WeaponStatusCalculator", function () {
+    describe("constructor", function () {
+        it("throws no errors with valid options", function () {
+            const fn = function () { new WeaponStatsCalculator(options) }
+            assert.doesNotThrow(fn, Error)
+        })
+    })
+    describe("calculate", function () {
+        it("throws no errors with valid options", function () {
+            const fn = function () {
+                calculator.calculate()
+            }
+            assert.doesNotThrow(fn, Error)
+        })
+    })
     describe("helpers", function () {
         it("attributeRequirementsMet", function () {
             const have = attributeRequirementsMet(options.attributes, options.requirements)
