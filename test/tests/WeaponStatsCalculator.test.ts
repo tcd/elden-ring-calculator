@@ -5,16 +5,13 @@ chai.use(deepEqualInAnyOrder)
 const assert = chai.assert
 
 import {
-    DmgAttrMap,
-} from "@types"
-
-import {
     WeaponStatsCalculator,
     WeaponStatsCalculatorOptions,
     attributeRequirementsMet,
     damageTypesScalesOnAttributes,
     buildDmgAttrMap,
     buildAttrMap,
+    damageTypeAttributeRequirementsMet,
 } from "@lib"
 
 const options: WeaponStatsCalculatorOptions = {
@@ -140,6 +137,29 @@ const options: WeaponStatsCalculatorOptions = {
     },
 }
 
+const attrRequirementsMet = buildAttrMap(true)
+
+const scalesOn = buildDmgAttrMap(false, {
+    physical: {
+        strength: true,
+        dexterity: true,
+    },
+    magic: {
+        intelligence: true,
+    },
+    fire: {
+        faith: true,
+    },
+    lightning: {
+        dexterity: true,
+    },
+    holy: {
+        faith: true,
+    },
+})
+
+const dmgAtttrMet = buildDmgAttrMap(true)
+
 const calculator = new WeaponStatsCalculator(options)
 
 describe("WeaponStatusCalculator", function () {
@@ -150,31 +170,16 @@ describe("WeaponStatusCalculator", function () {
     // })
     describe("helpers", function () {
         it("attributeRequirementsMet", function () {
-            const want = buildAttrMap(true)
             const have = attributeRequirementsMet(options.attributes, options.requirements)
-            assert.deepEqualInAnyOrder(have, want)
+            assert.deepEqualInAnyOrder(have, attrRequirementsMet)
         })
         it("damageTypesScalesOnAttributes", function () {
-            const want = buildDmgAttrMap(false, {
-                physical: {
-                    strength: true,
-                    dexterity: true,
-                },
-                magic: {
-                    intelligence: true,
-                },
-                fire: {
-                    faith: true,
-                },
-                lightning: {
-                    dexterity: true,
-                },
-                holy: {
-                    faith: true,
-                },
-            })
             const have = damageTypesScalesOnAttributes(options.adjustmentParams)
-            assert.deepEqualInAnyOrder(have, want)
+            assert.deepEqualInAnyOrder(have, scalesOn)
+        })
+        it.skip("damageTypeAttributeRequirementsMet", function () {
+            const have = damageTypeAttributeRequirementsMet(scalesOn, attrRequirementsMet)
+            assert.deepEqualInAnyOrder(have, dmgAtttrMet)
         })
     })
 })
