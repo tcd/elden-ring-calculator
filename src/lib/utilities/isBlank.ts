@@ -5,7 +5,7 @@ export const isBlank = (data: any): boolean => {
     if (data == null)      { return true }
 
     // Empty string
-    if (data?.trim() === "") {
+    if ((typeof data === "string") && data?.trim() === "") {
         return true
     }
 
@@ -19,10 +19,10 @@ export const isBlank = (data: any): boolean => {
         return true
     }
 
-    // Empty object (method 2)
-    if (data.constructor === Object && Object.keys(data).length === 0) {
-        return true
-    }
+    // // Empty object (method 2)
+    // if (data.constructor === Object && Object.keys(data).length === 0) {
+    //     return true
+    // }
 
     // Looks like there is a value
     return false

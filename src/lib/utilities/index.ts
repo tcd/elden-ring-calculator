@@ -1,6 +1,7 @@
 export * from "./google-sheets-functions"
 export * from "./isBlank"
 export * from "./multiply"
+export * from "./round"
 export * from "./scalingTier"
 export * from "./default-maps"
 export * from "./build-maps"
