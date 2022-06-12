@@ -199,3 +199,101 @@ export class WeaponStatsCalculator {
     }
 
 }
+
+export const attributeRequirementsMet = (attributes: AttrMap<Integer>, requirements: AttrMap<Integer>): AttrMap<boolean> => {
+    // return Object.values(Attr).reduce((result, attr) => {
+    //     result[attr] = attributes[attr] >= requirements[attr]
+    //     return result
+    // }, {} as AttrMap<boolean>)
+    // return Object.values(Attr).reduce((result, attr) => ({
+    //     ...result,
+    //     [attr]: (attributes[attr] >= requirements[attr]),
+    // }), {} as AttrMap<boolean>)
+    return {
+        strength:     attributes.strength     >= requirements.strength,
+        dexterity:    attributes.dexterity    >= requirements.dexterity,
+        intelligence: attributes.intelligence >= requirements.intelligence,
+        faith:        attributes.faith        >= requirements.faith,
+        arcane:       attributes.arcane       >= requirements.arcane,
+    }
+}
+
+export const damageTypesScalesOnAttributes = (adjustmentParam: AttackElementCorrectParam): DmgAttrMap<boolean> => {
+    return {
+        [Dmg.physical]: {
+            [Attr.strength]:     adjustmentParam.isStrengthCorrect_byPhysics,
+            [Attr.dexterity]:    adjustmentParam.isDexterityCorrect_byPhysics,
+            [Attr.intelligence]: adjustmentParam.isMagicCorrect_byPhysics,
+            [Attr.faith]:        adjustmentParam.isFaithCorrect_byPhysics,
+            [Attr.arcane]:       adjustmentParam.isLuckCorrect_byPhysics,
+        },
+        [Dmg.magic]: {
+            [Attr.strength]:     adjustmentParam.isStrengthCorrect_byMagic,
+            [Attr.dexterity]:    adjustmentParam.isDexterityCorrect_byMagic,
+            [Attr.intelligence]: adjustmentParam.isMagicCorrect_byMagic,
+            [Attr.faith]:        adjustmentParam.isFaithCorrect_byMagic,
+            [Attr.arcane]:       adjustmentParam.isLuckCorrect_byMagic,
+        },
+        [Dmg.fire]: {
+            [Attr.strength]:     adjustmentParam.isStrengthCorrect_byFire,
+            [Attr.dexterity]:    adjustmentParam.isDexterityCorrect_byFire,
+            [Attr.intelligence]: adjustmentParam.isMagicCorrect_byFire,
+            [Attr.faith]:        adjustmentParam.isFaithCorrect_byFire,
+            [Attr.arcane]:       adjustmentParam.isLuckCorrect_byFire,
+        },
+        [Dmg.lightning]: {
+            [Attr.strength]:     adjustmentParam.isStrengthCorrect_byThunder,
+            [Attr.dexterity]:    adjustmentParam.isDexterityCorrect_byThunder,
+            [Attr.intelligence]: adjustmentParam.isMagicCorrect_byThunder,
+            [Attr.faith]:        adjustmentParam.isFaithCorrect_byThunder,
+            [Attr.arcane]:       adjustmentParam.isLuckCorrect_byThunder,
+        },
+        [Dmg.holy]: {
+            [Attr.strength]:     adjustmentParam.isStrengthCorrect_byDark,
+            [Attr.dexterity]:    adjustmentParam.isDexterityCorrect_byDark,
+            [Attr.intelligence]: adjustmentParam.isMagicCorrect_byDark,
+            [Attr.faith]:        adjustmentParam.isFaithCorrect_byDark,
+            [Attr.arcane]:       adjustmentParam.isLuckCorrect_byDark,
+        },
+    }
+}
+
+export const damageTypeAttributeRequirementsMet = (scalesOn: DmgAttrMap<boolean>, attrMet: AttrMap<boolean>): DmgAttrMap<boolean> => {
+    return {
+        [Dmg.physical]: {
+            [Attr.strength]:     scalesOn.physical.strength      && attrMet.strength,
+            [Attr.dexterity]:    scalesOn.physical.dexterity     && attrMet.dexterity,
+            [Attr.intelligence]: scalesOn.physical.intelligence  && attrMet.intelligence,
+            [Attr.faith]:        scalesOn.physical.faith         && attrMet.faith,
+            [Attr.arcane]:       scalesOn.physical.arcane        && attrMet.arcane,
+        },
+        [Dmg.magic]: {
+            [Attr.strength]:     scalesOn.magic.strength         && attrMet.strength,
+            [Attr.dexterity]:    scalesOn.magic.dexterity        && attrMet.dexterity,
+            [Attr.intelligence]: scalesOn.magic.intelligence     && attrMet.intelligence,
+            [Attr.faith]:        scalesOn.magic.faith            && attrMet.faith,
+            [Attr.arcane]:       scalesOn.magic.arcane           && attrMet.arcane,
+        },
+        [Dmg.fire]: {
+            [Attr.strength]:     scalesOn.lightning.strength     && attrMet.strength,
+            [Attr.dexterity]:    scalesOn.lightning.dexterity    && attrMet.dexterity,
+            [Attr.intelligence]: scalesOn.lightning.intelligence && attrMet.intelligence,
+            [Attr.faith]:        scalesOn.lightning.faith        && attrMet.faith,
+            [Attr.arcane]:       scalesOn.lightning.arcane       && attrMet.arcane,
+        },
+        [Dmg.lightning]: {
+            [Attr.strength]:     scalesOn.holy.strength          && attrMet.strength,
+            [Attr.dexterity]:    scalesOn.holy.dexterity         && attrMet.dexterity,
+            [Attr.intelligence]: scalesOn.holy.intelligence      && attrMet.intelligence,
+            [Attr.faith]:        scalesOn.holy.faith             && attrMet.faith,
+            [Attr.arcane]:       scalesOn.holy.arcane            && attrMet.arcane,
+        },
+        [Dmg.holy]: {
+            [Attr.strength]:     scalesOn.fire.strength          && attrMet.strength,
+            [Attr.dexterity]:    scalesOn.fire.dexterity         && attrMet.dexterity,
+            [Attr.intelligence]: scalesOn.fire.intelligence      && attrMet.intelligence,
+            [Attr.faith]:        scalesOn.fire.faith             && attrMet.faith,
+            [Attr.arcane]:       scalesOn.fire.arcane            && attrMet.arcane,
+        },
+    }
+}
