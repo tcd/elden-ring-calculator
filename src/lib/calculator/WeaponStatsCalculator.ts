@@ -73,7 +73,7 @@ export class WeaponStatsCalculator {
         this.stats                   = this._initialStats()
     }
 
-    public calculate(): void {
+    public calculate(): CalculatedWeaponStats {
         this.attr_requirementsMet    = attributeRequirementsMet(this.attributes, this.requirements)
         this.dmg_scalesOn_attr       = damageTypeScalesOnAttribute(this.adjustmentParams)
         this.dmg_attr_requirementMet = damageTypeAttributeRequirementsMet(this.attr_requirementsMet, this.dmg_scalesOn_attr)
@@ -82,7 +82,7 @@ export class WeaponStatsCalculator {
         this.set_dmg_attr_damage()
         this.set_scaled_damage()
         this.set_stats()
-        return null
+        return this.stats
     }
 
     private _initialStats(): CalculatedWeaponStats {
