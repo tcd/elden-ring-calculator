@@ -4,7 +4,7 @@
     "author": "Clay Dunston <dunstontc@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "test": "npm run test",
+        "test": "npm run test:mocha",
         "test:mocha": "mocha --require ts-node/register --require tsconfig-paths/register test/**/*.test.ts",
         "test:coverage": "c8 npm run test:mocha && npm run test:report",
         "test:report": "c8 -r html report"

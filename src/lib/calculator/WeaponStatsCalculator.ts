@@ -14,6 +14,8 @@ import {
     buildDmgAttrMap,
     calcCorrect,
     multiply,
+    buildAttrMap,
+    sum,
 } from "@lib"
 
 export interface WeaponStatsCalculatorOptions {
@@ -30,6 +32,7 @@ export interface ICalculations {
     dmg_attr_requirementMet: DmgAttrMap<boolean>
     dmg_attr_calcCorrect: DmgAttrMap<Decimal>
     dmg_attr_damage: DmgAttrMap<Decimal>
+    raw_damage: DmgMap<Decimal>
 }
 
 // https://www.reddit.com/r/Eldenring/comments/tbco46/comment/i0e7xg7/?utm_source=share&utm_medium=web2x&context=3
@@ -44,8 +47,9 @@ export class WeaponStatsCalculator {
     private dmg_requirementsMet: DmgMap<boolean>
     private dmg_scalesOn_attr: DmgAttrMap<boolean>
     private dmg_attr_requirementMet: DmgAttrMap<boolean>
-    private dmg_attr_calcCorrect: DmgAttrMap<Decimal>
     private dmg_attr_damage: DmgAttrMap<Decimal>
+    private dmg_attr_calcCorrect: DmgAttrMap<Decimal>
+    private raw_damage: DmgMap<Decimal>
 
     public stats: CalculatedWeaponStats
 
@@ -55,10 +59,14 @@ export class WeaponStatsCalculator {
         this.adjustmentParams = options.adjustmentParams
         this.requirements     = options.requirements
 
-        this.stats                = this._initialStats()
-        this.dmg_attr_damage      = buildDmgAttrMap(0)
-        this.dmg_attr_calcCorrect = buildDmgAttrMap(0)
-        this.dmg_requirementsMet  = buildDmgMap(false)
+        this.attr_requirementsMet    = buildAttrMap(false)
+        this.dmg_requirementsMet     = buildDmgMap(false)
+        this.dmg_scalesOn_attr       = buildDmgAttrMap(false)
+        this.dmg_attr_requirementMet = buildDmgAttrMap(false)
+        this.dmg_attr_damage         = buildDmgAttrMap(0)
+        this.dmg_attr_calcCorrect    = buildDmgAttrMap(0)
+        this.raw_damage              = buildDmgMap(0)
+        this.stats                   = this._initialStats()
     }
 
     public calculate(): void {
@@ -131,6 +139,27 @@ export const attributeRequirementsMet = (attributes: AttrMap<Integer>, requireme
     }), {} as AttrMap<boolean>)
 }
 
+export const damageTypeAttributeRequirementsMet = (attrMet: AttrMap<boolean>, scalesOn: DmgAttrMap<boolean>): DmgAttrMap<boolean> => {
+    return Object.values(Dmg).reduce((dmgResult, dmg) => ({
+        ...dmgResult,
+        [dmg]: Object.values(Attr).reduce((attrResult, attr) => ({
+            ...attrResult,
+            [attr]: (scalesOn[dmg][attr] == true && attrMet[attr] == false) ? false : true,
+        }), {} as AttrMap<boolean>),
+    }), {} as DmgAttrMap<boolean>)
+}
+
+export const calculateRawDamage = (
+    dmg: Dmg,
+    dmgMet: DmgMap<boolean>,
+    dmg_attr_damage: DmgAttrMap<Decimal>,
+): Decimal => {
+    if (!dmgMet[dmg]) {
+        return 0
+    }
+    return sum(Object.values(dmg_attr_damage[dmg]))
+}
+
 export const damageTypeScalesOnAttribute = (adjustmentParam: AttackElementCorrectParam): DmgAttrMap<boolean> => {
     return {
         [Dmg.physical]: {
@@ -169,14 +198,4 @@ export const damageTypeScalesOnAttribute = (adjustmentParam: AttackElementCorrec
             [Attr.arcane]:       adjustmentParam.isLuckCorrect_byDark,
         },
     }
-}
-
-export const damageTypeAttributeRequirementsMet = (attrMet: AttrMap<boolean>, scalesOn: DmgAttrMap<boolean>): DmgAttrMap<boolean> => {
-    return Object.values(Dmg).reduce((dmgResult, dmg) => ({
-        ...dmgResult,
-        [dmg]: Object.values(Attr).reduce((attrResult, attr) => ({
-            ...attrResult,
-            [attr]: (scalesOn[dmg][attr] == true && attrMet[attr] == false) ? false : true,
-        }), {} as AttrMap<boolean>),
-    }), {} as DmgAttrMap<boolean>)
 }

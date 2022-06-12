@@ -1,15 +1,9 @@
 import {
-    WeaponStatsCalculatorOptions,
-    ICalculations,
     buildDmgAttrMap,
     buildAttrMap,
     buildDmgMap,
 } from "@lib"
-
-export interface TestWeapon {
-    options: WeaponStatsCalculatorOptions
-    calculations: ICalculations
-}
+import { TestWeapon } from "."
 
 export const BlasphemousBlade: TestWeapon = {
     options: {
@@ -182,6 +176,10 @@ export const BlasphemousBlade: TestWeapon = {
             fire: {
                 faith: 91.728,
             },
+        }),
+        raw_damage: buildDmgMap(0, {
+            physical: 155.4246012,
+            fire: 91.728,
         }),
     },
 }
