@@ -177,41 +177,41 @@ export const damageTypeAttributeRequirementsMet = (attrMet: AttrMap<boolean>, sc
             [attr]: (scalesOn[dmg][attr] == true && attrMet[attr] == false) ? false : true,
         }), {} as AttrMap<boolean>),
     }), {} as DmgAttrMap<boolean>)
-    return {
-        [Dmg.physical]: {
-            [Attr.strength]:     ((scalesOn.physical.strength     && !attrMet.strength)     ? false : true),
-            [Attr.dexterity]:    ((scalesOn.physical.dexterity    && !attrMet.dexterity)    ? false : true),
-            [Attr.intelligence]: ((scalesOn.physical.intelligence && !attrMet.intelligence) ? false : true),
-            [Attr.faith]:        ((scalesOn.physical.faith        && !attrMet.faith)        ? false : true),
-            [Attr.arcane]:       ((scalesOn.physical.arcane       && !attrMet.arcane)       ? false : true),
-        },
-        [Dmg.magic]: {
-            [Attr.strength]:     ((scalesOn.magic.strength     && !attrMet.strength)     ? false : true),
-            [Attr.dexterity]:    ((scalesOn.magic.dexterity    && !attrMet.dexterity)    ? false : true),
-            [Attr.intelligence]: ((scalesOn.magic.intelligence && !attrMet.intelligence) ? false : true),
-            [Attr.faith]:        ((scalesOn.magic.faith        && !attrMet.faith)        ? false : true),
-            [Attr.arcane]:       ((scalesOn.magic.arcane       && !attrMet.arcane)       ? false : true),
-        },
-        [Dmg.fire]: {
-            [Attr.strength]:     ((scalesOn.fire.strength     && !attrMet.strength)     ? false : true),
-            [Attr.dexterity]:    ((scalesOn.fire.dexterity    && !attrMet.dexterity)    ? false : true),
-            [Attr.intelligence]: ((scalesOn.fire.intelligence && !attrMet.intelligence) ? false : true),
-            [Attr.faith]:        ((scalesOn.fire.faith        && !attrMet.faith)        ? false : true),
-            [Attr.arcane]:       ((scalesOn.fire.arcane       && !attrMet.arcane)       ? false : true),
-        },
-        [Dmg.lightning]: {
-            [Attr.strength]:     ((scalesOn.lightning.strength     && !attrMet.strength)     ? false : true),
-            [Attr.dexterity]:    ((scalesOn.lightning.dexterity    && !attrMet.dexterity)    ? false : true),
-            [Attr.intelligence]: ((scalesOn.lightning.intelligence && !attrMet.intelligence) ? false : true),
-            [Attr.faith]:        ((scalesOn.lightning.faith        && !attrMet.faith)        ? false : true),
-            [Attr.arcane]:       ((scalesOn.lightning.arcane       && !attrMet.arcane)       ? false : true),
-        },
-        [Dmg.holy]: {
-            [Attr.strength]:     ((scalesOn.holy.strength     && !attrMet.strength)     ? false : true),
-            [Attr.dexterity]:    ((scalesOn.holy.dexterity    && !attrMet.dexterity)    ? false : true),
-            [Attr.intelligence]: ((scalesOn.holy.intelligence && !attrMet.intelligence) ? false : true),
-            [Attr.faith]:        ((scalesOn.holy.faith        && !attrMet.faith)        ? false : true),
-            [Attr.arcane]:       ((scalesOn.holy.arcane       && !attrMet.arcane)       ? false : true),
-        },
-    }
+    // return {
+    //     [Dmg.physical]: {
+    //         [Attr.strength]:     ((scalesOn.physical.strength     && !attrMet.strength)     ? false : true),
+    //         [Attr.dexterity]:    ((scalesOn.physical.dexterity    && !attrMet.dexterity)    ? false : true),
+    //         [Attr.intelligence]: ((scalesOn.physical.intelligence && !attrMet.intelligence) ? false : true),
+    //         [Attr.faith]:        ((scalesOn.physical.faith        && !attrMet.faith)        ? false : true),
+    //         [Attr.arcane]:       ((scalesOn.physical.arcane       && !attrMet.arcane)       ? false : true),
+    //     },
+    //     [Dmg.magic]: {
+    //         [Attr.strength]:     ((scalesOn.magic.strength     && !attrMet.strength)     ? false : true),
+    //         [Attr.dexterity]:    ((scalesOn.magic.dexterity    && !attrMet.dexterity)    ? false : true),
+    //         [Attr.intelligence]: ((scalesOn.magic.intelligence && !attrMet.intelligence) ? false : true),
+    //         [Attr.faith]:        ((scalesOn.magic.faith        && !attrMet.faith)        ? false : true),
+    //         [Attr.arcane]:       ((scalesOn.magic.arcane       && !attrMet.arcane)       ? false : true),
+    //     },
+    //     [Dmg.fire]: {
+    //         [Attr.strength]:     ((scalesOn.fire.strength     && !attrMet.strength)     ? false : true),
+    //         [Attr.dexterity]:    ((scalesOn.fire.dexterity    && !attrMet.dexterity)    ? false : true),
+    //         [Attr.intelligence]: ((scalesOn.fire.intelligence && !attrMet.intelligence) ? false : true),
+    //         [Attr.faith]:        ((scalesOn.fire.faith        && !attrMet.faith)        ? false : true),
+    //         [Attr.arcane]:       ((scalesOn.fire.arcane       && !attrMet.arcane)       ? false : true),
+    //     },
+    //     [Dmg.lightning]: {
+    //         [Attr.strength]:     ((scalesOn.lightning.strength     && !attrMet.strength)     ? false : true),
+    //         [Attr.dexterity]:    ((scalesOn.lightning.dexterity    && !attrMet.dexterity)    ? false : true),
+    //         [Attr.intelligence]: ((scalesOn.lightning.intelligence && !attrMet.intelligence) ? false : true),
+    //         [Attr.faith]:        ((scalesOn.lightning.faith        && !attrMet.faith)        ? false : true),
+    //         [Attr.arcane]:       ((scalesOn.lightning.arcane       && !attrMet.arcane)       ? false : true),
+    //     },
+    //     [Dmg.holy]: {
+    //         [Attr.strength]:     ((scalesOn.holy.strength     && !attrMet.strength)     ? false : true),
+    //         [Attr.dexterity]:    ((scalesOn.holy.dexterity    && !attrMet.dexterity)    ? false : true),
+    //         [Attr.intelligence]: ((scalesOn.holy.intelligence && !attrMet.intelligence) ? false : true),
+    //         [Attr.faith]:        ((scalesOn.holy.faith        && !attrMet.faith)        ? false : true),
+    //         [Attr.arcane]:       ((scalesOn.holy.arcane       && !attrMet.arcane)       ? false : true),
+    //     },
+    // }
 }
