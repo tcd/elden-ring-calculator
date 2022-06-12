@@ -1,4 +1,7 @@
 import {
+    Decimal,
+} from "@types"
+import {
     buildDmgAttrMap,
     buildAttrMap,
     buildDmgMap,

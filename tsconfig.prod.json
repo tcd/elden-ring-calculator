@@ -1,11 +1,11 @@
 {
-    "ts-node": {
-        "files": true
-    },
     "compilerOptions": {
-        "module": "CommonJS",
+        "module": "ESNext",
         "esModuleInterop": true,
         "downlevelIteration": true,
+        "declaration": true,
+        "outDir": "dist",
+        "rootDir": "src",
         "baseUrl": "./",
         "paths": {
             "@lib":   [ "./src/lib/index.ts"   ],
@@ -13,19 +13,18 @@
         },
         "types": [
             "node",
-            "mocha",
-            "chai",
         ],
-        "typeRoots": [
-            "./node_modules/@types",
-            "/src/@types",
-        ],
-
+        // "typeRoots": [
+        //     "./node_modules/@types",
+        //     "/src/@types",
+        // ],
     },
     "include": [
-        "src/**/*.ts",
+        "./src/lib/",
     ],
     "exclude": [
+        "test",
         "ignore",
+        "dist",
     ]
 }

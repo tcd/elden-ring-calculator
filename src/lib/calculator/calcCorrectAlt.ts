@@ -4,6 +4,8 @@ import {
     Dmg,
     AttrMap,
     SlimWeaponStatData,
+    Integer,
+    Decimal,
 } from "@types"
 
 import { calcCorrect } from "."

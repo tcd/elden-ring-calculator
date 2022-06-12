@@ -7,6 +7,8 @@ import {
     DmgAttrMap,
     DmgMap,
     SlimWeaponStatData,
+    Integer,
+    Decimal,
 } from "@types"
 
 import {

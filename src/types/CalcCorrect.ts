@@ -1,3 +1,8 @@
+import {
+    Integer,
+    Decimal,
+} from "@types"
+
 export type CalcCorrectIdString =
     | "0"
     | "1"

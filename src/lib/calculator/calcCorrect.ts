@@ -3,6 +3,7 @@ import {
     FourFuncs,
     CalcIdLevelRanges,
     CalcIdLevelRangeFuncs,
+    Decimal,
 } from "@types"
 
 export const calcCorrect = (level: number, calcCorrectId: number): Decimal => {

@@ -1,3 +1,8 @@
+import {
+    Integer,
+    Decimal,
+} from "@types"
+
 /**
  *
  * @param number The number to round.
