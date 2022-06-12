@@ -8,7 +8,7 @@ import {
     WeaponStatsCalculator,
     WeaponStatsCalculatorOptions,
     attributeRequirementsMet,
-    damageTypesScalesOnAttributes,
+    damageTypeScalesOnAttribute,
     buildDmgAttrMap,
     buildAttrMap,
     damageTypeAttributeRequirementsMet,
@@ -158,28 +158,21 @@ const scalesOn = buildDmgAttrMap(false, {
     },
 })
 
-const dmgAtttrMet = buildDmgAttrMap(true)
-
-const calculator = new WeaponStatsCalculator(options)
+const dmgAttrMet = buildDmgAttrMap(true)
 
 describe("WeaponStatusCalculator", function () {
-    // it("set_attr_requirementsMet", function () {
-    //     let { input, type } = cases.CASE_1
-    //     const have = func(JSON.parse(input))
-    //     assert.equal(have, type)
-    // })
     describe("helpers", function () {
         it("attributeRequirementsMet", function () {
             const have = attributeRequirementsMet(options.attributes, options.requirements)
             assert.deepEqualInAnyOrder(have, attrRequirementsMet)
         })
         it("damageTypesScalesOnAttributes", function () {
-            const have = damageTypesScalesOnAttributes(options.adjustmentParams)
+            const have = damageTypeScalesOnAttribute(options.adjustmentParams)
             assert.deepEqualInAnyOrder(have, scalesOn)
         })
-        it.skip("damageTypeAttributeRequirementsMet", function () {
-            const have = damageTypeAttributeRequirementsMet(scalesOn, attrRequirementsMet)
-            assert.deepEqualInAnyOrder(have, dmgAtttrMet)
+        it("damageTypeAttributeRequirementsMet", function () {
+            const have = damageTypeAttributeRequirementsMet(attrRequirementsMet, scalesOn)
+            assert.deepEqualInAnyOrder(have, dmgAttrMet)
         })
     })
 })
