@@ -177,9 +177,30 @@ export const BlasphemousBlade: TestWeapon = {
                 faith: 91.728,
             },
         }),
-        raw_damage: buildDmgMap(0, {
+        scaled_damage: buildDmgMap(0, {
             physical: 155.4246012,
             fire: 91.728,
         }),
+        stats: {
+            attack: {
+                base: buildDmgMap(0, {
+                    physical:  296.45,
+                    fire:      191.10,
+                }),
+                scaled: buildDmgMap(0, {
+                    physical: 155.4246012,
+                    fire: 91.728,
+                }),
+                total: buildDmgMap(0, {
+                    physical: 451.8746012,
+                    fire: 282.828,
+                }),
+            },
+            scaling: buildAttrMap("", {
+                strength:  "C",
+                dexterity: "C",
+                faith:     "B",
+            }),
+        },
     },
 }

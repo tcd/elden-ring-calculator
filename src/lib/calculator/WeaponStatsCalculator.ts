@@ -16,6 +16,7 @@ import {
     multiply,
     buildAttrMap,
     sum,
+    scalingTier,
 } from "@lib"
 
 export interface WeaponStatsCalculatorOptions {
@@ -32,7 +33,8 @@ export interface ICalculations {
     dmg_attr_requirementMet: DmgAttrMap<boolean>
     dmg_attr_calcCorrect: DmgAttrMap<Decimal>
     dmg_attr_damage: DmgAttrMap<Decimal>
-    raw_damage: DmgMap<Decimal>
+    scaled_damage: DmgMap<Decimal>
+    stats: CalculatedWeaponStats
 }
 
 // https://www.reddit.com/r/Eldenring/comments/tbco46/comment/i0e7xg7/?utm_source=share&utm_medium=web2x&context=3
@@ -77,6 +79,7 @@ export class WeaponStatsCalculator {
         this.set_dmg_requirementsMet()
         this.set_dmg_attr_damage()
         this.set_scaled_damage()
+        this.set_stats()
         return null
     }
 
@@ -87,7 +90,6 @@ export class WeaponStatsCalculator {
                 scaled: {},
                 total: {},
             },
-            defense: {},
             scaling: {},
         } as CalculatedWeaponStats
     }
@@ -142,6 +144,20 @@ export class WeaponStatsCalculator {
             } else {
                 this.scaled_damage[dmg] = sum(Object.values(this.dmg_attr_damage[dmg]))
             }
+        }
+    }
+
+    private set_stats(): void {
+        for (const dmg of Object.values(Dmg)) {
+            const baseDamage   = this.slimData.attack[dmg]
+            const scaledDamage = this.scaled_damage[dmg]
+
+            this.stats.attack.base  [dmg] = baseDamage
+            this.stats.attack.scaled[dmg] = scaledDamage
+            this.stats.attack.total [dmg] = (baseDamage + scaledDamage)
+        }
+        for (const attr of Object.values(Attr)) {
+            this.stats.scaling[attr] = scalingTier(this.slimData.scaling[attr])
         }
     }
 

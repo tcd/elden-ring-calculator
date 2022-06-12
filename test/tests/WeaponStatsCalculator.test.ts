@@ -51,7 +51,11 @@ describe("WeaponStatusCalculator", function () {
         // works, just has extra decimal precision
         it.skip("scaled_damage", function () {
             calculator.calculate()
-            assert.deepEqualInAnyOrder(calculator.scaled_damage, calculations.raw_damage)
+            assert.deepEqualInAnyOrder(calculator.scaled_damage, calculations.scaled_damage)
+        })
+        it.skip("stats", function () {
+            calculator.calculate()
+            assert.deepEqualInAnyOrder(calculator.stats, calculations.stats)
         })
     })
     describe("helpers", function () {
