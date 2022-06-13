@@ -1,4 +1,4 @@
-import { Attr } from "@types"
+import { Attr } from "./Attr"
 
 /**
  * Map of `Attribute` names and values of type `T`.

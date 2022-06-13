@@ -1,4 +1,4 @@
-import { Dmg } from "@types"
+import { Dmg } from "./Dmg"
 
 /**
  * Map of `Damage Type` names and values of type `T`.
