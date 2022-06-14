@@ -6,10 +6,14 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 
 
 ## [Unreleased]
+
+
+## [0.3.0] - 2022-06-14
 ### Added
 - Started work on defense calculations.
 ### Changed
 - Renamed some files.
+- Include scaling values and strings in `CalculatedWeaponStats`.
 
 
 ## [0.2.0] - 2022-06-13

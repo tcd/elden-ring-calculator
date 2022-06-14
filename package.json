@@ -1,6 +1,6 @@
 {
     "name": "elden-ring-calculator",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "author": "Clay Dunston <dunstontc@gmail.com>",
     "license": "MIT",
     "types": "./src/@types/elden-ring-calculator.d.ts",
@@ -17,8 +17,9 @@
         "test:coverage": "c8 npm run test:mocha && npm run test:report",
         "test:mocha": "mocha --require ts-node/register --require tsconfig-paths/register test/**/*.test.ts",
         "test:report": "c8 -r html report",
-        "build:types": "npm-dts generate",
-        "build:rollup": "rollup -c rollup.config.js"
+        "build:types": "npm-dts --help",
+        "build:rollup": "rollup -c rollup.config.js",
+        "git:push-tags": "git push origin --tags"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.2",

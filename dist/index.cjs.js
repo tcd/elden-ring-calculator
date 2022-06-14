@@ -211,22 +211,22 @@ var scalingTier = function (decimal) {
     if (decimal > 1.75) {
         return "S";
     }
-    if (decimal > 1.40) {
+    if (decimal >= 1.40) {
         return "A";
     }
-    if (decimal > 0.90) {
+    if (decimal >= 0.90) {
         return "B";
     }
-    if (decimal > 0.60) {
+    if (decimal >= 0.60) {
         return "C";
     }
-    if (decimal > 0.25) {
+    if (decimal >= 0.25) {
         return "D";
     }
-    if (decimal > 0.00) {
+    if (decimal >= 0.00) {
         return "E";
     }
-    return "";
+    return "-";
 };
 
 var sum = function (numbers) {
@@ -271,7 +271,10 @@ var WeaponStatsCalculator = /** @class */ (function () {
                 scaled: {},
                 total: {}
             },
-            scaling: {}
+            scaling: {
+                tierStrings: {},
+                values: {}
+            }
         };
     };
     WeaponStatsCalculator.prototype.set_dmg_attr_calcCorrect = function () {
@@ -393,9 +396,10 @@ var WeaponStatsCalculator = /** @class */ (function () {
     };
     WeaponStatsCalculator.prototype.set_stats = function () {
         var e_7, _a, e_8, _b;
+        var _c, _d, _e;
         try {
-            for (var _c = __values(Object.values(Dmg)), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var dmg = _d.value;
+            for (var _f = __values(Object.values(Dmg)), _g = _f.next(); !_g.done; _g = _f.next()) {
+                var dmg = _g.value;
                 var baseDamage = this.slimData.attack[dmg];
                 var scaledDamage = this.scaled_damage[dmg];
                 this.stats.attack.base[dmg] = baseDamage;
@@ -406,20 +410,21 @@ var WeaponStatsCalculator = /** @class */ (function () {
         catch (e_7_1) { e_7 = { error: e_7_1 }; }
         finally {
             try {
-                if (_d && !_d.done && (_a = _c["return"])) _a.call(_c);
+                if (_g && !_g.done && (_a = _f["return"])) _a.call(_f);
             }
             finally { if (e_7) throw e_7.error; }
         }
         try {
-            for (var _e = __values(Object.values(Attr)), _f = _e.next(); !_f.done; _f = _e.next()) {
-                var attr = _f.value;
-                this.stats.scaling[attr] = scalingTier(this.slimData.scaling[attr]);
+            for (var _h = __values(Object.values(Attr)), _j = _h.next(); !_j.done; _j = _h.next()) {
+                var attr = _j.value;
+                this.stats.scaling.tierStrings[attr] = scalingTier(this.slimData.scaling[attr]);
+                this.stats.scaling.values[attr] = (_e = (_d = (_c = this.slimData) === null || _c === void 0 ? void 0 : _c.scaling) === null || _d === void 0 ? void 0 : _d[attr]) !== null && _e !== void 0 ? _e : 0;
             }
         }
         catch (e_8_1) { e_8 = { error: e_8_1 }; }
         finally {
             try {
-                if (_f && !_f.done && (_b = _e["return"])) _b.call(_e);
+                if (_j && !_j.done && (_b = _h["return"])) _b.call(_h);
             }
             finally { if (e_8) throw e_8.error; }
         }
