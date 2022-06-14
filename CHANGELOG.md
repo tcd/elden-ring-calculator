@@ -6,20 +6,19 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 
 
 ## [Unreleased]
+### Changed
+- Renamed some files.
 
 
 ## [0.2.0] - 2022-06-13
-
 - I think this is the first consumable working version.
 
 
 ## [0.1.1] - 2022-06-12
-
 - Trying to figure out how to properly publish TypeScript code.
 
 
 ## [0.1.0] - 2022-06-12
-
 - Initial release
 
 
