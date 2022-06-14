@@ -1,5 +1,5 @@
 import {
-    Decimal,
+    Decimal, ScalingTier,
 } from "@types"
 import {
     buildDmgAttrMap,
@@ -199,11 +199,20 @@ export const BlasphemousBlade: TestWeapon = {
                     fire: 282.828,
                 }),
             },
-            scaling: buildAttrMap("", {
-                strength:  "C",
-                dexterity: "C",
-                faith:     "B",
-            }),
+            scaling: {
+                values: {
+                    strength:     0.63,
+                    dexterity:    0.63,
+                    intelligence: 0.00,
+                    faith:        0.90,
+                    arcane:       0.00,
+                },
+                tierStrings: buildAttrMap<ScalingTier>("-", {
+                    strength:  "C",
+                    dexterity: "C",
+                    faith:     "B",
+                }),
+            },
         },
     },
 }
