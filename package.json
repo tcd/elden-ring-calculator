@@ -1,13 +1,14 @@
 {
     "name": "elden-ring-calculator",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "author": "Clay Dunston <dunstontc@gmail.com>",
     "license": "MIT",
     "types": "./src/@types/elden-ring-calculator.d.ts",
     "files": [
         "dist/**/*.js",
         "dist/**/*.js.map",
-        "dist/**/*.d.ts"
+        "dist/**/*.d.ts",
+        "src/@types/elden-ring-calculator.d.ts"
     ],
     "main": "./dist/index.cjs.js",
     "typings": "./src/@types/elden-ring-calculator.d.ts",
