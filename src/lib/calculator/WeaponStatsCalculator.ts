@@ -92,7 +92,10 @@ export class WeaponStatsCalculator {
                 scaled: {},
                 total: {},
             },
-            scaling: {},
+            scaling: {
+                tierStrings: {},
+                values: {},
+            },
         } as CalculatedWeaponStats
     }
 
@@ -159,7 +162,8 @@ export class WeaponStatsCalculator {
             this.stats.attack.total [dmg] = (baseDamage + scaledDamage)
         }
         for (const attr of Object.values(Attr)) {
-            this.stats.scaling[attr] = scalingTier(this.slimData.scaling[attr])
+            this.stats.scaling.tierStrings[attr] = scalingTier(this.slimData.scaling[attr])
+            this.stats.scaling.values[attr] = this.slimData?.scaling?.[attr] ?? 0
         }
     }
 

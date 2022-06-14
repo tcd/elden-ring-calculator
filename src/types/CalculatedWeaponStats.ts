@@ -1,3 +1,9 @@
+import {
+    AttrMap,
+    Decimal,
+    ScalingTier,
+} from "."
+
 export interface CalculatedWeaponStats {
     attack: {
         base: {
@@ -33,26 +39,7 @@ export interface CalculatedWeaponStats {
     //     // guardBoost: number
     // }
     scaling: {
-        strength:     string
-        dexterity:    string
-        intelligence: string
-        faith:        string
-        arcane:       string
+        values: AttrMap<Decimal>
+        tierStrings: AttrMap<ScalingTier>
     }
-    // scaling: {
-    //     values: {
-    //         strength:     number
-    //         dexterity:    number
-    //         intelligence: number
-    //         faith:        number
-    //         arcane:       number
-    //     }
-    //     tierStrings: {
-    //         strength:     string
-    //         dexterity:    string
-    //         intelligence: string
-    //         faith:        string
-    //         arcane:       string
-    //     }
-    // }
 }

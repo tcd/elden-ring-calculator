@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 ## [Unreleased]
 
 
+## [0.2.0] - 2022-06-13
+
+- I think this is the first consumable working version.
+
+
 ## [0.1.1] - 2022-06-12
 
 - Trying to figure out how to properly publish TypeScript code.

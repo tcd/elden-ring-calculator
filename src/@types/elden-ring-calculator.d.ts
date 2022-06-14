@@ -3,7 +3,7 @@ declare module "elden-ring-calculator" {
     export type Integer = number
     export type Decimal = number
 
-    export type ScalingTier = "S" | "A" | "B" | "C" | "D" | "E"
+    export type ScalingTier = "S" | "A" | "B" | "C" | "D" | "E" | "-"
 
     /** Name of an `Attribute`. */
     export enum Attr {
@@ -120,11 +120,8 @@ declare module "elden-ring-calculator" {
             }
         }
         scaling: {
-            strength:     string
-            dexterity:    string
-            intelligence: string
-            faith:        string
-            arcane:       string
+            values: AttrMap<Decimal>
+            tierStrings: AttrMap<ScalingTier>
         }
     }
 
