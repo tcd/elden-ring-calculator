@@ -98,25 +98,25 @@ declare module "elden-ring-calculator" {
     export interface CalculatedWeaponStats {
         attack: {
             base: {
-                physical:  number
-                magic:     number
-                fire:      number
-                lightning: number
-                holy:      number
+                physical:  Decimal
+                magic:     Decimal
+                fire:      Decimal
+                lightning: Decimal
+                holy:      Decimal
             }
             scaled: {
-                physical:  number
-                magic:     number
-                fire:      number
-                lightning: number
-                holy:      number
+                physical:  Decimal
+                magic:     Decimal
+                fire:      Decimal
+                lightning: Decimal
+                holy:      Decimal
             }
             total: {
-                physical:  number
-                magic:     number
-                fire:      number
-                lightning: number
-                holy:      number
+                physical:  Decimal
+                magic:     Decimal
+                fire:      Decimal
+                lightning: Decimal
+                holy:      Decimal
             }
         }
         scaling: {
