@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 
 
 ## [Unreleased]
+### Added
+- Started work on defense calculations.
 ### Changed
 - Renamed some files.
 
