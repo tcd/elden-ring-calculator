@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 ## [Unreleased]
 
 
+## [0.3.1] - 2022-06-14
+### Fixed
+- Fixed minimum value for scaling tiers.
+
+
 ## [0.3.0] - 2022-06-14
 ### Added
 - Started work on defense calculations.

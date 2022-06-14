@@ -6,6 +6,6 @@ export const scalingTier = (decimal: number): ScalingTier => {
     if (decimal >= 0.90) { return "B" }
     if (decimal >= 0.60) { return "C" }
     if (decimal >= 0.25) { return "D" }
-    if (decimal >= 0.00) { return "E" }
+    if (decimal >  0.00) { return "E" }
     return "-"
 }
