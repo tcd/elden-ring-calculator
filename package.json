@@ -5,7 +5,9 @@
     "license": "MIT",
     "types": "./src/@types/elden-ring-calculator.d.ts",
     "files": [
-        "dist"
+        "dist/**/*.js",
+        "dist/**/*.js.map",
+        "dist/**/*.d.ts"
     ],
     "scripts": {
         "test": "npm run test:mocha",
