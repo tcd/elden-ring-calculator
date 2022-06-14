@@ -17,8 +17,7 @@
         "test:mocha": "mocha --require ts-node/register --require tsconfig-paths/register test/**/*.test.ts",
         "test:report": "c8 -r html report",
         "build:types": "npm-dts generate",
-        "build:rollup": "rollup -c rollup.config.js",
-        "publish": "npm publish"
+        "build:rollup": "rollup -c rollup.config.js"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.2",
