@@ -44,27 +44,27 @@
         ),
         IF(
             {Arc Scaling} > 0,
-            ADD(MULTIPLY({Arc Scaling},MULTIPLY({Passive Arcane CalcCorrect},$J$4)),$J$4),
-            $J$4
+            ADD(MULTIPLY({Arc Scaling},MULTIPLY({Passive Arcane CalcCorrect},{Rot/Mad/Sleep 1})),{Rot/Mad/Sleep 1}),
+            {Rot/Mad/Sleep 1}
         ),
         IF(
             $L$20 = 0,
             SWITCH(
                 $J$2,
-                "Scarlet Rot", $J$4 * 0.6,
-                "Madness",     $J$4 * 0.6,
-                "Sleep",       $J$4 * 0.6,
-                "Frost",       $I$6 * 0.6,
-                "Poison",      {Poison Base 1} * 0.6,
-                "Blood",       {Blood Base 1} * 0.6,
+                "Scarlet Rot", {Rot/Mad/Sleep 1} * 0.6,
+                "Madness",     {Rot/Mad/Sleep 1} * 0.6,
+                "Sleep",       {Rot/Mad/Sleep 1} * 0.6,
+                "Frost",       {Frost Base 1}    * 0.6,
+                "Poison",      {Poison Base 1}   * 0.6,
+                "Blood",       {Blood Base 1}    * 0.6,
                 0
             ),
             SWITCH(
                 $J$2,
-                "Scarlet Rot", $J$4,
-                "Madness",     $J$4,
-                "Sleep",       $J$4,
-                "Frost",       $I$6,
+                "Scarlet Rot", {Rot/Mad/Sleep 1},
+                "Madness",     {Rot/Mad/Sleep 1},
+                "Sleep",       {Rot/Mad/Sleep 1},
+                "Frost",       {Poison Base 1},
                 "Poison", IF(
                     {Arc Scaling} > 0,
                     ADD(MULTIPLY({Arc Scaling},MULTIPLY({Passive Arcane CalcCorrect},{Poison Base 1})),{Poison Base 1}),
