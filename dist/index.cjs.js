@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-/*! *****************************************************************************
+/******************************************************************************
 Copyright (c) Microsoft Corporation.
 
 Permission to use, copy, modify, and/or distribute this software for any
@@ -76,6 +76,17 @@ var Dmg;
     Dmg["lightning"] = "lightning";
     Dmg["holy"] = "holy";
 })(Dmg || (Dmg = {}));
+
+/** Name of a `Passive Damage Type`. */
+var Passive;
+(function (Passive) {
+    Passive["scarlet_rot"] = "scarlet_rot";
+    Passive["madness"] = "madness";
+    Passive["sleep"] = "sleep";
+    Passive["frost"] = "frost";
+    Passive["poison"] = "poison";
+    Passive["blood_loss"] = "blood_loss";
+})(Passive || (Passive = {}));
 
 var calcCorrect = function (level, calcCorrectId) {
     var _a = __read(CALC_ID_LEVEL_RANGES[calcCorrectId.toString()], 3), cap3 = _a[0], cap2 = _a[1], cap1 = _a[2];
@@ -223,7 +234,7 @@ var scalingTier = function (decimal) {
     if (decimal >= 0.25) {
         return "D";
     }
-    if (decimal >= 0.00) {
+    if (decimal > 0.00) {
         return "E";
     }
     return "-";
@@ -274,7 +285,8 @@ var WeaponStatsCalculator = /** @class */ (function () {
             scaling: {
                 tierStrings: {},
                 values: {}
-            }
+            },
+            passive: {}
         };
     };
     WeaponStatsCalculator.prototype.set_dmg_attr_calcCorrect = function () {

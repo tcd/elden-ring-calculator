@@ -1,13 +1,6 @@
 import typescript from "@rollup/plugin-typescript"
 import commonjs from "@rollup/plugin-commonjs"
 
-const plugins = [
-    typescript({
-        tsconfig: "tsconfig.prod.json",
-    }),
-    commonjs({ extensions: [".ts"] }), // the ".ts" extension is required
-]
-
 /** @type {import('rollup').RollupOptions} */
 const config = {
     input: "./src/lib/calculator/WeaponStatsCalculator.ts",
@@ -18,7 +11,12 @@ const config = {
             exports: "named",
         },
     ],
-    plugins: plugins,
+    plugins: [
+        typescript({
+            tsconfig: "tsconfig.prod.json",
+        }),
+        commonjs({ extensions: [".ts"] }), // the ".ts" extension is required
+    ],
 }
 
 export default config

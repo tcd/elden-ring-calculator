@@ -1,6 +1,10 @@
 import { PassiveMap } from "@types"
 
-export const passiveDamage = (): PassiveMap<number> => {
+export interface PassiveDamageOptions {
+    arcaneRequirementMet: boolean
+}
+
+export const passiveDamage = (options: PassiveDamageOptions): PassiveMap<number> => {
     const result = {
         scarlet_rot: null,
         madness:     null,

@@ -3,7 +3,14 @@ declare module "elden-ring-calculator" {
     export type Integer = number
     export type Decimal = number
 
-    export type ScalingTier = "S" | "A" | "B" | "C" | "D" | "E" | "-"
+    export type ScalingTier =
+        | "S"
+        | "A"
+        | "B"
+        | "C"
+        | "D"
+        | "E"
+        | "-"
 
     /** Name of an `Attribute`. */
     export enum Attr {
@@ -23,17 +30,23 @@ declare module "elden-ring-calculator" {
         holy      = "holy",
     }
 
+    /** Name of a `Passive Damage Type`. */
+    export enum Passive {
+        scarlet_rot = "scarlet_rot",
+        madness     = "madness",
+        sleep       = "sleep",
+        frost       = "frost",
+        poison      = "poison",
+        blood_loss  = "blood_loss",
+    }
+
     /**
      * Map of `Attribute` names and values of type `T`.
      *
      * @template {T} ValueType the type of values present in the map.
      */
-    export interface AttrMap<T> {
-        [Attr.strength]:     T
-        [Attr.dexterity]:    T
-        [Attr.intelligence]: T
-        [Attr.faith]:        T
-        [Attr.arcane]:       T
+    export type AttrMap<T> = {
+        [key in keyof typeof Attr]: T
     }
 
     /**
@@ -41,12 +54,17 @@ declare module "elden-ring-calculator" {
      *
      * @template {T} ValueType the type of values present in the map.
      */
-    export interface DmgMap<T> {
-        [Dmg.physical]:  T
-        [Dmg.magic]:     T
-        [Dmg.fire]:      T
-        [Dmg.lightning]: T
-        [Dmg.holy]:      T
+    export type DmgMap<T> = {
+        [key in keyof typeof Dmg]: T
+    }
+
+    /**
+     * Map of `Passive Damage Type` names and values of type `T`.
+     *
+     * @template {T} ValueType the type of values present in the map.
+     */
+     export type PassiveMap<T> = {
+        [key in keyof typeof Passive]: T
     }
 
     export type AttrDmgMap<T> = {
@@ -64,43 +82,18 @@ declare module "elden-ring-calculator" {
     }
 
     export interface WeaponStatsCalculatorOptions {
-        attributes: AttrMap<Integer>
-        slimData: SlimWeaponStatData
+        attributes:       AttrMap<Integer>
+        slimData:         SlimWeaponStatData
         adjustmentParams: AttackElementCorrectParam
-        requirements: AttrMap<Integer>
+        requirements:     AttrMap<Integer>
     }
 
     export interface SlimWeaponStatData {
-        attack: {
-            physical:  Decimal
-            magic:     Decimal
-            fire:      Decimal
-            lightning: Decimal
-            holy:      Decimal
-        }
-        scaling: {
-            strength:     Decimal
-            dexterity:    Decimal
-            intelligence: Decimal
-            faith:        Decimal
-            arcane:       Decimal
-        }
-        calc_correct: {
-            physical:  Integer
-            magic:     Integer
-            fire:      Integer
-            lightning: Integer
-            holy:      Integer
-        }
-        passive: {
-            scarlet_rot: Integer
-            madness:     Integer
-            sleep:       Integer
-            frost:       Integer
-            poison:      Integer
-            blood_loss:  Integer
-        }
         attack_element_correct_param_id: Integer
+        attack:       DmgMap<Decimal>
+        scaling:      AttrMap<Decimal>
+        calc_correct: DmgMap<Integer>
+        passive:      PassiveMap<Integer>
     }
 
     export interface CalculatedWeaponStats {

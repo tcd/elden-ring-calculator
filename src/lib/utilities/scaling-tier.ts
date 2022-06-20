@@ -1,4 +1,4 @@
-import { ScalingTier } from "@types"
+import { ScalingTier } from "../../types"
 
 export const scalingTier = (decimal: number): ScalingTier => {
     if (decimal >  1.75) { return "S" }
