@@ -14,7 +14,7 @@
 | K2   | Passive Type 2             | string  |                                        |
 | J4   | Rot/Mad/Sleep 1            |         |                                        |
 | K4   | Rot/Mad/Sleep 2            |         |                                        |
-| L20  | Arc Requirement Met?       | boolean |                                        |
+| L20  | Arc Requirement Met?       | boolean | `1` is `true`                          |
 | I6   | Frost Base  1              |         |                                        |
 | I8   | Frost Base  2              |         |                                        |
 | J6   | Poison Base 1              |         |                                        |
