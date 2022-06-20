@@ -16,7 +16,7 @@ const adjustmentParams: AttackElementCorrectParam = {
     isDexterityCorrect_byPhysics: true,
     isMagicCorrect_byPhysics:     false,
     isFaithCorrect_byPhysics:     false,
-    isLuckCorrect_byPhysics:      false,
+    isLuckCorrect_byPhysics:      true,
     isStrengthCorrect_byMagic:    false,
     isDexterityCorrect_byMagic:   false,
     isMagicCorrect_byMagic:       true,
@@ -37,7 +37,6 @@ const adjustmentParams: AttackElementCorrectParam = {
     isMagicCorrect_byDark:        false,
     isFaithCorrect_byDark:        true,
     isLuckCorrect_byDark:         false,
-
     overwriteStrengthCorrectRate_byPhysics:  -1,
     overwriteDexterityCorrectRate_byPhysics: -1,
     overwriteMagicCorrectRate_byPhysics:     -1,
@@ -63,7 +62,6 @@ const adjustmentParams: AttackElementCorrectParam = {
     overwriteMagicCorrectRate_byDark:        -1,
     overwriteFaithCorrectRate_byDark:        -1,
     overwriteLuckCorrectRate_byDark:         -1,
-
     InfluenceStrengthCorrectRate_byPhysics:  100,
     InfluenceDexterityCorrectRate_byPhysics: 100,
     InfluenceMagicCorrectRate_byPhysics:     100,
@@ -89,41 +87,31 @@ const adjustmentParams: AttackElementCorrectParam = {
     InfluenceMagicCorrectRate_byDark:        100,
     InfluenceFaithCorrectRate_byDark:        100,
     InfluenceLuckCorrectRate_byDark:         100,
+
 }
 
-export const BlasphemousBlade: TestWeapon = {
+export const BloodRottenGreataxe: TestWeapon = {
     options: {
         attributes: buildAttrMap(30),
-        requirements: {
-            strength:     22,
-            dexterity:    15,
-            intelligence:  0,
-            faith:        21,
-            arcane:        0,
-        },
+        requirements: buildAttrMap(0, {
+            strength:  30,
+            dexterity: 10,
+        }),
         slimData: {
-            attack: {
-                physical:  296.45,
-                magic:       0.00,
-                fire:      191.10,
-                lightning:   0.00,
-                holy:        0.00,
-                // critical:  number
-                // stamina:  number
-            },
-            scaling: {
-                strength:     0.63,
-                dexterity:    0.63,
-                intelligence: 0.00,
-                faith:        0.90,
-                arcane:       0.00,
-
-            },
-            calc_correct: buildDmgMap(0, {
-                fire: 4,
+            attack: buildDmgMap(0, {
+                physical: 337.55,
             }),
-            passive: buildPassiveMap(0),
-            attack_element_correct_param_id: 10_000,
+            scaling: buildAttrMap(0, {
+                strength:  0.304,
+                dexterity: 0.988,
+                arcane:    0.435,
+            }),
+            calc_correct: buildDmgMap(0),
+            passive: buildPassiveMap(0, {
+                scarlet_rot: 65,
+                blood_loss:  120,
+            }),
+            attack_element_correct_param_id: 10_013,
         },
         adjustmentParams: adjustmentParams,
     },
@@ -133,8 +121,9 @@ export const BlasphemousBlade: TestWeapon = {
         dmg_attr_requirementMet: buildDmgAttrMap(true),
         dmg_scalesOn_attr: buildDmgAttrMap(false, {
             physical: {
-                strength: true,
+                strength:  true,
                 dexterity: true,
+                arcane:    true,
             },
             magic: {
                 intelligence: true,
@@ -151,14 +140,15 @@ export const BlasphemousBlade: TestWeapon = {
         }),
         dmg_attr_calcCorrect: buildDmgAttrMap<Decimal>(0, {
             physical: {
-                strength: 41.61000442,
+                strength:  41.61000442,
                 dexterity: 41.61000442,
+                arcane:    41.61000442,
             },
             magic: {
                 intelligence: 41.61000442,
             },
             fire: {
-                faith: 53.33333333,
+                faith: 41.61000442,
             },
             lightning: {
                 dexterity: 41.61000442,
@@ -169,55 +159,35 @@ export const BlasphemousBlade: TestWeapon = {
         }),
         dmg_attr_damage: buildDmgAttrMap<Decimal>(0, {
             physical: {
-                strength: 77.71230061,
-                dexterity: 77.71230061,
-            },
-            fire: {
-                faith: 91.728,
+                strength:  42.69818926,
+                dexterity: 138.7691151,
+                arcane:    61.09773792,
             },
         }),
-        scaled_damage: buildDmgMap(0, {
-            physical: 155.4246012,
-            fire: 91.728,
-        }),
+        scaled_damage: buildDmgMap(0, {}),
         stats: {
             attack: {
-                base: buildDmgMap(0, {
-                    physical:  296.45,
-                    fire:      191.10,
-                }),
-                scaled: buildDmgMap(0, {
-                    physical: 155.4246012,
-                    fire: 91.728,
-                }),
-                total: buildDmgMap(0, {
-                    physical: 451.8746012,
-                    fire: 282.828,
-                }),
+                base:   buildDmgMap(0, {}),
+                scaled: buildDmgMap(0, {}),
+                total:  buildDmgMap(0, {}),
             },
             scaling: {
-                values: {
-                    strength:     0.63,
-                    dexterity:    0.63,
-                    intelligence: 0.00,
-                    faith:        0.90,
-                    arcane:       0.00,
-                },
+                values: buildAttrMap(0, {
+                    strength:  0.304,
+                    dexterity: 0.988,
+                    arcane:    0.435,
+                }),
                 tierStrings: buildAttrMap<ScalingTier>("-", {
-                    strength:  "C",
-                    dexterity: "C",
-                    faith:     "B",
+                    strength:  "D",
+                    dexterity: "B",
+                    arcane:    "D",
                 }),
             },
             defense: buildDmgMap(0),
-            passive: {
-                scarlet_rot: 0,
-                madness:     0,
-                sleep:       0,
-                frost:       0,
-                poison:      0,
-                blood_loss:  0,
-            },
+            passive: buildPassiveMap(0, {
+                scarlet_rot: 65,
+                blood_loss:  133.7025,
+            }),
         },
     },
 }

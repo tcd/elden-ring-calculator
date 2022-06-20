@@ -33,7 +33,7 @@ export const buildDmgMap = <T>(defaultValue: T, values: Partial<DmgMap<T>> = {})
     }
 }
 
-export const buildPassive = <T>(defaultValue: T, values: Partial<PassiveMap<T>> = {}): PassiveMap<T> => {
+export const buildPassiveMap = <T>(defaultValue: T, values: Partial<PassiveMap<T>> = {}): PassiveMap<T> => {
     return {
         ...{
             scarlet_rot: defaultValue,
