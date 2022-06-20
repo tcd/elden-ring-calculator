@@ -1,4 +1,7 @@
 {
+    "files.associations": {
+        "api-extractor.json": "jsonc",
+    },
     "cSpell.words": [
         "Fextralife",
         "lcov",
