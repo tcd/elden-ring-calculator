@@ -1,7 +1,4 @@
-import {
-    Integer,
-    Decimal,
-} from "@types"
+import { Integer, Decimal } from "."
 
 export type CalcCorrectIdString =
     | "0"

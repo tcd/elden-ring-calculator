@@ -1,8 +1,8 @@
-import {
-    Integer,
-    Decimal,
-} from "@types"
+import { Integer, Decimal } from "."
 
+/**
+ * All information required to calculate weapon stats.
+ */
 export interface SlimWeaponStatData {
     attack_element_correct_param_id: Integer
     attack: {

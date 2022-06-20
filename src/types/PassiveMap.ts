@@ -1,4 +1,4 @@
-import { Passive } from "./Passive"
+import { Passive } from "."
 
 /**
  * Map of `Damage Type` names and values of type `T`.
