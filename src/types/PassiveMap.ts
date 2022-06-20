@@ -1,7 +1,7 @@
 import { Passive } from "."
 
 /**
- * Map of `Damage Type` names and values of type `T`.
+ * Map of `Passive Damage Type` names and values of type `T`.
  *
  * @template {T} ValueType the type of values present in the map.
  */
