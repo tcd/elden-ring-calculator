@@ -96,6 +96,7 @@ export class WeaponStatsCalculator {
                 tierStrings: {},
                 values: {},
             },
+            passive: {},
         } as CalculatedWeaponStats
     }
 

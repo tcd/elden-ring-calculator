@@ -6,27 +6,33 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 
 
 ## [Unreleased]
+### Added
+- [WIP] Support for passive damage calculation
+### Changed
+- Updated the following types:
+  - `SlimWeaponData`
+  - `CalculatedWeaponStats`
 
 
 ## [0.3.1] - 2022-06-14
 ### Fixed
-- Fixed minimum value for scaling tiers.
+- Fixed minimum value for scaling tiers
 
 
 ## [0.3.0] - 2022-06-14
 ### Added
-- Started work on defense calculations.
+- Started work on defense calculations
 ### Changed
-- Renamed some files.
-- Include scaling values and strings in `CalculatedWeaponStats`.
+- Renamed some files
+- Include scaling values and strings in `CalculatedWeaponStats`
 
 
 ## [0.2.0] - 2022-06-13
-- I think this is the first consumable working version.
+- I think this is the first consumable working version
 
 
 ## [0.1.1] - 2022-06-12
-- Trying to figure out how to properly publish TypeScript code.
+- Trying to figure out how to properly publish TypeScript code
 
 
 ## [0.1.0] - 2022-06-12

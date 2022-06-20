@@ -92,6 +92,14 @@ declare module "elden-ring-calculator" {
             lightning: Integer
             holy:      Integer
         }
+        passive: {
+            scarlet_rot: Integer
+            madness:     Integer
+            sleep:       Integer
+            frost:       Integer
+            poison:      Integer
+            blood_loss:  Integer
+        }
         attack_element_correct_param_id: Integer
     }
 
@@ -122,6 +130,14 @@ declare module "elden-ring-calculator" {
         scaling: {
             values: AttrMap<Decimal>
             tierStrings: AttrMap<ScalingTier>
+        }
+        passive: {
+            scarlet_rot: Decimal
+            madness:     Decimal
+            sleep:       Decimal
+            frost:       Decimal
+            poison:      Decimal
+            blood_loss:  Decimal
         }
     }
 

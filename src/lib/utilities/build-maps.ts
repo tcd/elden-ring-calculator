@@ -1,8 +1,10 @@
 import {
     AttrMap,
     DmgMap,
+    Passive,
     AttrDmgMap,
     DmgAttrMap,
+    PassiveMap,
 } from "@types"
 
 export const buildAttrMap = <T>(defaultValue: T, values: Partial<AttrMap<T>> = {}): AttrMap<T> => {
@@ -26,6 +28,20 @@ export const buildDmgMap = <T>(defaultValue: T, values: Partial<DmgMap<T>> = {})
             fire:      defaultValue,
             lightning: defaultValue,
             holy:      defaultValue,
+        },
+        ...values,
+    }
+}
+
+export const buildPassive = <T>(defaultValue: T, values: Partial<PassiveMap<T>> = {}): PassiveMap<T> => {
+    return {
+        ...{
+            scarlet_rot: defaultValue,
+            madness:     defaultValue,
+            sleep:       defaultValue,
+            frost:       defaultValue,
+            poison:      defaultValue,
+            blood_loss:  defaultValue,
         },
         ...values,
     }

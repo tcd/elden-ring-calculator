@@ -7,39 +7,47 @@ import {
 export interface CalculatedWeaponStats {
     attack: {
         base: {
-            physical:  number
-            magic:     number
-            fire:      number
-            lightning: number
-            holy:      number
+            physical:  Decimal
+            magic:     Decimal
+            fire:      Decimal
+            lightning: Decimal
+            holy:      Decimal
             // critical:  number
         }
         scaled: {
-            physical:  number
-            magic:     number
-            fire:      number
-            lightning: number
-            holy:      number
+            physical:  Decimal
+            magic:     Decimal
+            fire:      Decimal
+            lightning: Decimal
+            holy:      Decimal
             // critical:  number
         }
         total: {
-            physical:  number
-            magic:     number
-            fire:      number
-            lightning: number
-            holy:      number
+            physical:  Decimal
+            magic:     Decimal
+            fire:      Decimal
+            lightning: Decimal
+            holy:      Decimal
         }
     }
-    // defense: {
-    //     physical:   number
-    //     magic:      number
-    //     fire:       number
-    //     lightning:  number
-    //     holy:       number
-    //     // guardBoost: number
-    // }
+    defense: {
+        physical:    number
+        magic:       number
+        fire:        number
+        lightning:   number
+        holy:        number
+        guardBoost?: number
+    }
     scaling: {
         values: AttrMap<Decimal>
         tierStrings: AttrMap<ScalingTier>
+    }
+    passive: {
+        scarlet_rot: Decimal
+        madness:     Decimal
+        sleep:       Decimal
+        frost:       Decimal
+        poison:      Decimal
+        blood_loss:  Decimal
     }
 }

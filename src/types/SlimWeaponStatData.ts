@@ -4,6 +4,7 @@ import {
 } from "@types"
 
 export interface SlimWeaponStatData {
+    attack_element_correct_param_id: Integer
     attack: {
         physical:  Decimal
         magic:     Decimal
@@ -27,5 +28,12 @@ export interface SlimWeaponStatData {
         lightning: Integer
         holy:      Integer
     }
-    attack_element_correct_param_id: Integer
+    passive: {
+        scarlet_rot: Integer
+        madness:     Integer
+        sleep:       Integer
+        frost:       Integer
+        poison:      Integer
+        blood_loss:  Integer
+    }
 }
