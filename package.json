@@ -15,16 +15,19 @@
     "scripts": {
         "git:push-tags": "git push origin --tags",
         "test": "npm run test:mocha",
-        "test:coverage": "c8 npm run test:mocha && npm run test:report",
+        "test:coverage": "c8 --config ./etc/config/.nycrc.json npm run test:mocha && npm run test:report",
         "test:mocha": "mocha --require ts-node/register --require tsconfig-paths/register test/**/*.test.ts",
-        "test:report": "c8 -r html report",
+        "test:report": " --config ./etc/config/.nycrc.json -r html report",
         "build:rollup": "rollup -c rollup.config.js",
-        "build:types": "npm run build:types:compile && npm run build:types:rollup",
-        "build:types:compile": "tsc --project tsconfig.api.json"
+        "build:types": "npm run build:types:clean && npm run build:types:compile && npm run build:types:rollup",
+        "build:types:clean": "rimraf build/*",
+        "build:types:compile": "tsc --project tsconfig.api.json",
+        "build:types:rollup": "rollup -c rollup.config.dts.js"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.2",
         "@microsoft/api-extractor": "^7.25.2",
+        "@rollup/plugin-alias": "^3.1.9",
         "@rollup/plugin-babel": "^5.3.1",
         "@rollup/plugin-commonjs": "^22.0.0",
         "@rollup/plugin-typescript": "^8.3.3",
@@ -47,23 +50,5 @@
         "ts-node": "^10.8.1",
         "tsconfig-paths": "^4.0.0",
         "typescript": "^4.7.3"
-    },
-    "nyc": {
-        "extends": "@istanbuljs/nyc-config-typescript",
-        "check-coverage": false,
-        "all": true,
-        "extension": [
-            ".ts"
-        ],
-        "include": [
-            "src/**/*.ts"
-        ],
-        "reporter": [
-            "html",
-            "lcov",
-            "text",
-            "text-summary"
-        ],
-        "report-dir": "coverage"
     }
 }

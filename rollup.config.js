@@ -5,8 +5,7 @@ const plugins = [
     typescript({
         tsconfig: "tsconfig.prod.json",
     }),
-    commonjs({ extensions: [".ts"] }) // the ".ts" extension is required
-
+    commonjs({ extensions: [".ts"] }), // the ".ts" extension is required
 ]
 
 /** @type {import('rollup').RollupOptions} */

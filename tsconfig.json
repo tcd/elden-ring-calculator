@@ -28,5 +28,6 @@
     ],
     "exclude": [
         "ignore",
+        "etc/ignore/**/*.ts",
     ]
 }
