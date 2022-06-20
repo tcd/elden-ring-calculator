@@ -3,15 +3,16 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
+        "sourceMap": false,
         "declaration": true,
-        "sourceMap": true,
-        "declarationMap": true,
+        "declarationMap": false,
+        "emitDeclarationOnly": true,
         "types": [],
         "lib": [
             "es5",
             "ES2017",
         ],
-        "outDir": "build/tsc",
+        "outDir": "etc/build/tsc",
         "baseUrl": "./",
         "paths": {
             "@lib":   [ "./src/lib/index.ts"   ],
@@ -19,9 +20,11 @@
         },
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "src/**/index.ts"
     ],
     "exclude": [
+        "src/**/main.ts",
         "etc/ignore/**/*.ts",
         "test/**/*.ts"
     ],

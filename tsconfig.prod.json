@@ -25,7 +25,7 @@
     ],
     "exclude": [
         "test",
-        "ignore",
         "dist",
+        "etc",
     ]
 }

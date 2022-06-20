@@ -17,12 +17,14 @@
         "test": "npm run test:mocha",
         "test:coverage": "c8 --config ./etc/config/.nycrc.json npm run test:mocha && npm run test:report",
         "test:mocha": "mocha --require ts-node/register --require tsconfig-paths/register test/**/*.test.ts",
-        "test:report": " --config ./etc/config/.nycrc.json -r html report",
+        "test:report": "c8 --config ./etc/config/.nycrc.json -r html report",
         "build:rollup": "rollup -c rollup.config.js",
         "build:types": "npm run build:types:clean && npm run build:types:compile && npm run build:types:rollup",
-        "build:types:clean": "rimraf build/*",
+        "build:types:clean": "rimraf etc/build/*",
         "build:types:compile": "tsc --project tsconfig.api.json",
-        "build:types:rollup": "rollup -c rollup.config.dts.js"
+        "build:types:rollup": "rollup -c ./etc/config/rollup.config.dts.js",
+
+        "build:types:bundle": "rollup -c ./rollup.config.bundle-typescript.ts"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.2",
@@ -51,6 +53,7 @@
         "rollup-plugin-terser": "^7.0.2",
         "ts-node": "^10.8.1",
         "tsconfig-paths": "^4.0.0",
+        "tslib": "^2.4.0",
         "typescript": "^4.7.3"
     }
 }

@@ -3,7 +3,7 @@
         "files": true
     },
     "compilerOptions": {
-        "module": "CommonJS",
+        "module": "esne",
         "esModuleInterop": true,
         "downlevelIteration": true,
         "baseUrl": "./",
@@ -27,7 +27,8 @@
         "test/**/*.ts",
     ],
     "exclude": [
-        "ignore",
+        "etc",
         "etc/ignore/**/*.ts",
+        "etc/build/**/*.ts",
     ]
 }
