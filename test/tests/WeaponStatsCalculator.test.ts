@@ -10,7 +10,10 @@ import {
     damageTypeAttributeRequirementsMet,
     WeaponStatsCalculator,
 } from "@lib"
-import { BlasphemousBlade } from "../helpers"
+import {
+    BlasphemousBlade,
+    assertNumberMapsEqual,
+} from "../helpers"
 
 const { options, calculations } = BlasphemousBlade
 const calculator = new WeaponStatsCalculator(options)
@@ -34,25 +37,27 @@ describe("WeaponStatusCalculator", function () {
         })
     })
     describe("calculations", function () {
-        // works, just has extra decimal precision
-        it.skip("dmg_attr_calcCorrect", function () {
+        it("dmg_attr_calcCorrect", function () {
             calculator.calculate()
-            assert.deepEqualInAnyOrder(calculator.dmg_attr_calcCorrect, calculations.dmg_attr_calcCorrect)
+            assertNumberMapsEqual(calculations.dmg_attr_calcCorrect, calculator.dmg_attr_calcCorrect, 7)
         })
         it("dmg_requirementsMet", function () {
             calculator.calculate()
-            assert.deepEqualInAnyOrder(calculator.dmg_requirementsMet, calculations.dmg_requirementsMet)
+            assert.deepEqualInAnyOrder(calculations.dmg_requirementsMet, calculator.dmg_requirementsMet)
         })
-        // works, just has extra decimal precision
-        it.skip("dmg_attr_damage", function () {
+        it("dmg_attr_damage", function () {
             calculator.calculate()
-            assert.deepEqualInAnyOrder(calculator.dmg_attr_damage, calculations.dmg_attr_damage)
+            assertNumberMapsEqual(calculations.dmg_attr_damage, calculator.dmg_attr_damage, 7)
         })
-        // works, just has extra decimal precision
-        it.skip("scaled_damage", function () {
+        it("scaled_damage", function () {
             calculator.calculate()
-            assert.deepEqualInAnyOrder(calculator.scaled_damage, calculations.scaled_damage)
+            assertNumberMapsEqual(calculations.scaled_damage, calculator.scaled_damage)
         })
+        it("stats.passive", function () {
+            calculator.calculate()
+            assertNumberMapsEqual(calculations.stats.passive, calculator.stats.passive)
+        })
+        // Can't compare objects this complex & nested
         it.skip("stats", function () {
             calculator.calculate()
             assert.deepEqualInAnyOrder(calculator.stats, calculations.stats)

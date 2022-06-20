@@ -3,12 +3,13 @@ import {
     Attr,
     AttrMap,
     CalculatedWeaponStats,
+    Decimal,
     Dmg,
     DmgAttrMap,
     DmgMap,
-    SlimWeaponStatData,
     Integer,
-    Decimal,
+    Passive,
+    SlimWeaponStatData,
 } from "@types"
 
 import {
@@ -19,6 +20,7 @@ import {
     buildAttrMap,
     sum,
     scalingTier,
+    passiveDamage,
 } from "@lib"
 
 export interface WeaponStatsCalculatorOptions {
@@ -82,6 +84,7 @@ export class WeaponStatsCalculator {
         this.set_dmg_attr_damage()
         this.set_scaled_damage()
         this.set_stats()
+        this.set_passive_damage()
         return this.stats
     }
 
@@ -168,6 +171,14 @@ export class WeaponStatsCalculator {
         }
     }
 
+    private set_passive_damage(): void {
+        this.stats.passive = passiveDamage({
+            arcaneLevel:          this.attributes.arcane,
+            arcaneRequirementMet: this.attr_requirementsMet.arcane,
+            arcaneScaling:        this.slimData.scaling.arcane,
+            passiveMap:           this.slimData.passive,
+        })
+    }
 }
 
 export const attributeRequirementsMet = (attributes: AttrMap<Integer>, requirements: AttrMap<Integer>): AttrMap<boolean> => {
