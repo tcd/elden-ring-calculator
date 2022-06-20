@@ -1,0 +1,82 @@
+/*
+
+| cell |            name            |
+| ---- | -------------------------- |
+| E6   | Arc Scaling                |
+| F8   | Passive Arcane CalcCorrect |
+| J2   | Passive Type 1             |
+| K2   | Passive Type 2             |
+| K4   | Rot/Mad/Sleep 2            |
+| L20  | Arc Requirement Met?       |
+|      |                            |
+| I8   | Frost Base 2               |
+| J8   | Poison Base 2              |
+| K8   | Blood Base 2               |
+
+| cell |            name            |
+| ---- | -------------------------- |
+| F2   | Weapon                     |
+| G2   | Upgrade Level              |
+| F8   | Passive Arcane CalcCorrect |
+| K6   | Blood Base 1               |
+| J6   | Poison Base 1              |
+| J4   | Rot/Mad/Sleep 1            |
+| K4   | Rot/Mad/Sleep 2            |
+
+*/
+
+=IF(
+    {Weapon} = "Cold Antspur Rapier",
+    SWITCH(
+        {Upgrade Level},
+        0, 50,
+        1, 55,
+        2, 60,
+        3, 65,
+        4, 70,
+        5, 75,
+        0
+    ),
+    IF(
+        OR(
+            {Weapon} = "Poison Fingerprint Stone Shield",
+            {Weapon} = "Blood Fingerprint Stone Shield"
+        ),
+        IF(
+            {Arc Scaling} > 0,
+            ADD(MULTIPLY({Arc Scaling},MULTIPLY({Passive Arcane CalcCorrect},$J$4)),$J$4),
+            $J$4
+        ),
+        IF(
+            $L$20 = 0,
+            SWITCH(
+                $J$2,
+                "Scarlet Rot", $J$4 * 0.6,
+                "Madness",     $J$4 * 0.6,
+                "Sleep",       $J$4 * 0.6,
+                "Frost",       $I$6 * 0.6,
+                "Poison",      {Poison Base 1} * 0.6,
+                "Blood",       {Blood Base 1} * 0.6,
+                0
+            ),
+            SWITCH(
+                $J$2,
+                "Scarlet Rot", $J$4,
+                "Madness",     $J$4,
+                "Sleep",       $J$4,
+                "Frost",       $I$6,
+                "Poison", IF(
+                    {Arc Scaling} > 0,
+                    ADD(MULTIPLY({Arc Scaling},MULTIPLY({Passive Arcane CalcCorrect},{Poison Base 1})),{Poison Base 1}),
+                    {Poison Base 1}
+                ),
+                "Blood", IF(
+                    {Arc Scaling} > 0,
+                    ADD(MULTIPLY({Arc Scaling},MULTIPLY({Passive Arcane CalcCorrect},{Blood Base 1})),{Blood Base 1}),
+                    {Blood Base 1}
+                ),
+                0
+            )
+        )
+    )
+)
