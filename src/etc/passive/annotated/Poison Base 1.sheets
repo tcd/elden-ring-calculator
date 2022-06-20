@@ -1,8 +1,11 @@
 =IF(
     {Passive Type 1} = "Poison",
     INDIRECT(
+        // ADDRESS(row, column, [absolute_relative_mode], [use_a1_notation], [sheet])
         ADDRESS(
             {Row Number},
+            // 8 columns in the sheet *Passive* aren't relevant.
+            // Not sure why we multiply times 3
             8 + {Upgrade Level} * 3,
             1,
             1,

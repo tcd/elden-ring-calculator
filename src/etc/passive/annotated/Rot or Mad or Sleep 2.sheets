@@ -1,0 +1,7 @@
+=SWITCH(
+    {Passive Type 2},
+    "Scarlet Rot", INDIRECT(ADDRESS({Row Number},4,1,1,"Passive")),
+    "Madness",     INDIRECT(ADDRESS({Row Number},5,1,1,"Passive")),
+    "Sleep",       INDIRECT(ADDRESS({Row Number},6,1,1,"Passive")),
+    0
+)

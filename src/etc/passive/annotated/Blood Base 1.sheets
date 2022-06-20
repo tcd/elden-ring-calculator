@@ -1,0 +1,13 @@
+=IF(
+    {Passive Type 1} = "Blood",
+    INDIRECT(
+        ADDRESS(
+            {Row Number},
+            9 + {Upgrade Level} * 3,
+            1,
+            1,
+            "Passive"
+        )
+    ),
+    0
+)
