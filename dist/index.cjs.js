@@ -179,6 +179,63 @@ var CALC_ID_LEVEL_RANGE_FUNCTIONS_JS = {
     ]
 };
 
+var passiveArcaneCalcCorrect = function (level) {
+    var v1 = null;
+    if (level > 60) {
+        v1 = (90 + (10 * ((level - 60) / 39)));
+    }
+    else if (level > 45) {
+        v1 = (75 + (15 * ((level - 45) / 15)));
+    }
+    else if (level > 25) {
+        v1 = (10 + (65 * ((level - 25) / 20)));
+    }
+    else {
+        v1 = (0 + (10 * ((level - 1) / 24)));
+    }
+    return v1 / 100;
+};
+
+var passiveDamage = function (options) {
+    var e_1, _a;
+    var _b;
+    var result = buildPassiveMap(0);
+    var passiveMap = options.passiveMap, arcaneRequirementMet = options.arcaneRequirementMet;
+    if (!arcaneRequirementMet) {
+        try {
+            for (var _c = __values(Object.entries(passiveMap)), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var _e = __read(_d.value, 2), key = _e[0], value = _e[1];
+                result[key] = value * 0.6;
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c["return"])) _a.call(_c);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        return result;
+    }
+    result["scarlet_rot"] = passiveMap["scarlet_rot"];
+    result["madness"] = passiveMap["madness"];
+    result["sleep"] = passiveMap["sleep"];
+    result["frost"] = passiveMap["frost"];
+    var arcaneScaling = (_b = options === null || options === void 0 ? void 0 : options.arcaneScaling) !== null && _b !== void 0 ? _b : 0;
+    var arcaneLevel = options.arcaneLevel;
+    if (arcaneScaling > 0) {
+        var calcCorrect = passiveArcaneCalcCorrect(arcaneLevel);
+        var poison = passiveMap.poison, blood_loss = passiveMap.blood_loss;
+        result["poison"] = (poison + (arcaneScaling * (calcCorrect * poison)));
+        result["blood_loss"] = (blood_loss + (arcaneScaling * (calcCorrect * blood_loss)));
+    }
+    else {
+        result["poison"] = passiveMap["poison"];
+        result["blood_loss"] = passiveMap["blood_loss"];
+    }
+    return result;
+};
+
 var buildAttrMap = function (defaultValue, values) {
     if (values === void 0) { values = {}; }
     return __assign({
@@ -197,6 +254,17 @@ var buildDmgMap = function (defaultValue, values) {
         fire: defaultValue,
         lightning: defaultValue,
         holy: defaultValue
+    }, values);
+};
+var buildPassiveMap = function (defaultValue, values) {
+    if (values === void 0) { values = {}; }
+    return __assign({
+        scarlet_rot: defaultValue,
+        madness: defaultValue,
+        sleep: defaultValue,
+        frost: defaultValue,
+        poison: defaultValue,
+        blood_loss: defaultValue
     }, values);
 };
 var buildDmgAttrMap = function (defaultValue, values) {
@@ -273,6 +341,7 @@ var WeaponStatsCalculator = /** @class */ (function () {
         this.set_dmg_attr_damage();
         this.set_scaled_damage();
         this.set_stats();
+        this.set_passive_damage();
         return this.stats;
     };
     WeaponStatsCalculator.prototype._initialStats = function () {
@@ -440,6 +509,14 @@ var WeaponStatsCalculator = /** @class */ (function () {
             }
             finally { if (e_8) throw e_8.error; }
         }
+    };
+    WeaponStatsCalculator.prototype.set_passive_damage = function () {
+        this.stats.passive = passiveDamage({
+            arcaneLevel: this.attributes.arcane,
+            arcaneRequirementMet: this.attr_requirementsMet.arcane,
+            arcaneScaling: this.slimData.scaling.arcane,
+            passiveMap: this.slimData.passive
+        });
     };
     return WeaponStatsCalculator;
 }());

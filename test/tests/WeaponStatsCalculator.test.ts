@@ -12,6 +12,7 @@ import {
 } from "@lib"
 import {
     BlasphemousBlade,
+    BloodRottenGreataxe,
     assertNumberMapsEqual,
 } from "../helpers"
 
@@ -61,6 +62,13 @@ describe("WeaponStatusCalculator", function () {
         it.skip("stats", function () {
             calculator.calculate()
             assert.deepEqualInAnyOrder(calculator.stats, calculations.stats)
+        })
+        describe("Blood Rotten Greataxe", function () {
+            it("stats.passive", function () {
+                const calculator = new WeaponStatsCalculator(BloodRottenGreataxe.options)
+                calculator.calculate()
+                assertNumberMapsEqual(BloodRottenGreataxe.calculations.stats.passive, calculator.stats.passive)
+            })
         })
     })
     describe("helpers", function () {

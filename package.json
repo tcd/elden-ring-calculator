@@ -1,6 +1,6 @@
 {
     "name": "elden-ring-calculator",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "author": "Clay Dunston <dunstontc@gmail.com>",
     "license": "MIT",
     "types": "./src/@types/elden-ring-calculator.d.ts",

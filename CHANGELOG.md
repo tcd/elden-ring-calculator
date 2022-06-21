@@ -5,10 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog][keep-a-changelog], and this project adheres to [Semantic Versioning][semver].
 
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+
+## [0.4.0] - 2022-06-20
 ### Added
 - [WIP] Support for passive damage calculation
 ### Changed
+- Renamed `SlimWeaponStatData` to `SlimWeaponData`
+- Simplified various types using maps
 - Updated the following types:
   - `SlimWeaponData`
   - `CalculatedWeaponStats`

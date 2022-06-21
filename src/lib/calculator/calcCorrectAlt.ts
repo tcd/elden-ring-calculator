@@ -3,7 +3,7 @@ import {
     Attr,
     Dmg,
     AttrMap,
-    SlimWeaponStatData,
+    SlimWeaponData,
     Integer,
     Decimal,
 } from "@types"
@@ -15,7 +15,7 @@ export interface CalcCorrectOptions {
     damageType: Dmg
     dmg_scalesOn_attr: DmgAttrMap<boolean>
     attributes: AttrMap<Integer>
-    slimData: SlimWeaponStatData
+    slimData: SlimWeaponData
 }
 
 export const __calcCorrect = (options: CalcCorrectOptions): Decimal => {

@@ -12,7 +12,9 @@ declare module "elden-ring-calculator" {
         | "E"
         | "-"
 
-    /** Name of an `Attribute`. */
+    /**
+     * Name of an `Attribute`.
+     */
     export enum Attr {
         strength     = "strength",
         dexterity    = "dexterity",
@@ -21,7 +23,9 @@ declare module "elden-ring-calculator" {
         arcane       = "arcane",
     }
 
-    /** Name of a `Damage Type`. */
+    /**
+     * Name of a `Damage Type`.
+     */
     export enum Dmg {
         physical  = "physical",
         magic     = "magic",
@@ -30,7 +34,9 @@ declare module "elden-ring-calculator" {
         holy      = "holy",
     }
 
-    /** Name of a `Passive Damage Type`. */
+    /**
+     * Name of a `Passive Damage Type`.
+     */
     export enum Passive {
         scarlet_rot = "scarlet_rot",
         madness     = "madness",
@@ -83,55 +89,30 @@ declare module "elden-ring-calculator" {
 
     export interface WeaponStatsCalculatorOptions {
         attributes:       AttrMap<Integer>
-        slimData:         SlimWeaponStatData
+        slimData:         SlimWeaponData
         adjustmentParams: AttackElementCorrectParam
         requirements:     AttrMap<Integer>
     }
 
-    export interface SlimWeaponStatData {
+    export interface SlimWeaponData {
         attack_element_correct_param_id: Integer
-        attack:       DmgMap<Decimal>
-        scaling:      AttrMap<Decimal>
+        attack: DmgMap<Decimal>
+        scaling: AttrMap<Decimal>
         calc_correct: DmgMap<Integer>
-        passive:      PassiveMap<Integer>
+        passive: PassiveMap<Integer>
     }
 
     export interface CalculatedWeaponStats {
         attack: {
-            base: {
-                physical:  Decimal
-                magic:     Decimal
-                fire:      Decimal
-                lightning: Decimal
-                holy:      Decimal
-            }
-            scaled: {
-                physical:  Decimal
-                magic:     Decimal
-                fire:      Decimal
-                lightning: Decimal
-                holy:      Decimal
-            }
-            total: {
-                physical:  Decimal
-                magic:     Decimal
-                fire:      Decimal
-                lightning: Decimal
-                holy:      Decimal
-            }
+            base: DmgMap<Decimal>
+            scaled: DmgMap<Decimal>
+            total: DmgMap<Decimal>
         }
         scaling: {
             values: AttrMap<Decimal>
             tierStrings: AttrMap<ScalingTier>
         }
-        passive: {
-            scarlet_rot: Decimal
-            madness:     Decimal
-            sleep:       Decimal
-            frost:       Decimal
-            poison:      Decimal
-            blood_loss:  Decimal
-        }
+        passive: PassiveMap<Decimal>
     }
 
     export interface AttackElementCorrectParam {
@@ -213,5 +194,4 @@ declare module "elden-ring-calculator" {
         InfluenceFaithCorrectRate_byDark: number
         InfluenceLuckCorrectRate_byDark: number
     }
-
 }

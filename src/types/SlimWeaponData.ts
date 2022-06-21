@@ -3,7 +3,7 @@ import { Integer, Decimal } from "."
 /**
  * All information required to calculate weapon stats.
  */
-export interface SlimWeaponStatData {
+export interface SlimWeaponData {
     attack_element_correct_param_id: Integer
     attack: {
         physical:  Decimal

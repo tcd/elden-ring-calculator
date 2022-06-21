@@ -8,8 +8,7 @@ import {
     DmgAttrMap,
     DmgMap,
     Integer,
-    Passive,
-    SlimWeaponStatData,
+    SlimWeaponData,
 } from "@types"
 
 import {
@@ -25,11 +24,15 @@ import {
 
 export interface WeaponStatsCalculatorOptions {
     attributes: AttrMap<Integer>
-    slimData: SlimWeaponStatData
+    slimData: SlimWeaponData
     adjustmentParams: AttackElementCorrectParam
     requirements: AttrMap<Integer>
 }
 
+/**
+ * For tests.
+ * @private
+ */
 export interface ICalculations {
     attr_requirementsMet: AttrMap<boolean>
     dmg_requirementsMet: DmgMap<boolean>
@@ -44,7 +47,7 @@ export interface ICalculations {
 // https://www.reddit.com/r/Eldenring/comments/tbco46/comment/i0e7xg7/?utm_source=share&utm_medium=web2x&context=3
 export class WeaponStatsCalculator {
 
-    private slimData: SlimWeaponStatData
+    private slimData: SlimWeaponData
     private adjustmentParams: AttackElementCorrectParam
     private attributes: AttrMap<Integer>
     private requirements: AttrMap<Integer>
