@@ -1,9 +1,20 @@
 {
     "name": "elden-ring-calculator",
-    "version": "0.4.0",
-    "author": "Clay Dunston <dunstontc@gmail.com>",
+    "version": "0.4.1",
+    "description": "Code for Elden Ring AR calculation.",
     "license": "MIT",
-    "types": "./src/@types/elden-ring-calculator.d.ts",
+    "repository": "github:elden-ring-calculator",
+    "bugs": "https://github.com/tcd/elden-ring-calculator/issues",
+    "keywords": [
+        "AR Calculator",
+        "Dark Souls",
+        "Elden Ring Calculator",
+        "Elden Ring",
+        "From Software",
+        "Gaming",
+        "Weapon Damage"
+    ],
+    "author": "Clay Dunston <dunstontc@gmail.com>",
     "files": [
         "dist/**/*.js",
         "dist/**/*.js.map",
@@ -11,6 +22,7 @@
         "src/@types/elden-ring-calculator.d.ts"
     ],
     "main": "./dist/index.cjs.js",
+    "types": "./src/@types/elden-ring-calculator.d.ts",
     "typings": "./src/@types/elden-ring-calculator.d.ts",
     "scripts": {
         "git:push-tags": "git push origin --tags",

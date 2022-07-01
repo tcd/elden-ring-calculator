@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 <!-- ## [Unreleased] -->
 
 
+## [0.4.1] - 2022-07-01
+### Changed
+- Added badges to readme
+- Added information to package.json
+
+
 ## [0.4.0] - 2022-06-20
 ### Added
 - [WIP] Support for passive damage calculation
