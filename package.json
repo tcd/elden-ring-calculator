@@ -1,9 +1,9 @@
 {
     "name": "elden-ring-calculator",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "Code for Elden Ring AR calculation.",
     "license": "MIT",
-    "repository": "github:elden-ring-calculator",
+    "repository": "github:tcd/elden-ring-calculator",
     "bugs": "https://github.com/tcd/elden-ring-calculator/issues",
     "keywords": [
         "AR Calculator",

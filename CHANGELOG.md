@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog][keep-a-changelog], and this project ad
 <!-- ## [Unreleased] -->
 
 
+## [0.4.2] - 2022-07-03
+### Fixed
+- Fixed repo link in package.json
+
+
 ## [0.4.1] - 2022-07-01
 ### Changed
 - Added badges to readme
